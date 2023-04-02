@@ -4,7 +4,7 @@ import MainLayout from './components/layouts/MainLayout';
 
 function App() {
   return (
-    <>
+    <div className='dark'>
       <Router>
         <Routes>
           {routes.map((route, index) => {
@@ -17,7 +17,7 @@ function App() {
           })}
         </Routes>
       </Router>
-    </>
+    </div>
   );
 }
 

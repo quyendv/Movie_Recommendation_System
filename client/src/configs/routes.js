@@ -7,12 +7,15 @@
 // };
 const routesConfigs = {
   home: '/',
+  movie: '/movie',
+  tv: '/tv',
   mediaList: '/:mediaType',
   mediaDetail: '/:mediaType/:mediaId',
   personDetail: '/person/:personId',
   favorites: '/favorites',
   signin: '/signin',
   signup: '/signup',
+  search: '/search',
 };
 
 export default routesConfigs;

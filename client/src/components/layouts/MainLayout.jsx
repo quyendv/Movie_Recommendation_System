@@ -1,5 +1,16 @@
+import Header from '../common/Header';
+
 function MainLayout({ children }) {
-  return <>{children}</>;
+  return (
+    <>
+      {/* Header */}
+      <Header />
+
+      {children}
+
+      {/* Footer */}
+    </>
+  );
 }
 
 export default MainLayout;
