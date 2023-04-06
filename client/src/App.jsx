@@ -12,9 +12,10 @@ function App() {
             return route.index ? (
               <Route index key={index} element={<Layout>{route.element}</Layout>} />
             ) : (
-              <Route path={route.path} element={<Layout>{route.element}</Layout>} />
+              <Route key={index} path={route.path} element={<Layout>{route.element}</Layout>} />
             );
           })}
+          {/* // TODO: Page Not Found */}
         </Routes>
       </Router>
     </div>
