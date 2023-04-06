@@ -1,10 +1,14 @@
+import { useSelector } from 'react-redux';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import routes from '~/routes';
 import MainLayout from './components/layouts/MainLayout';
 
 function App() {
+  // @ts-ignore
+  const { theme } = useSelector((state) => state.theme);
+
   return (
-    <div className='dark'>
+    <div className={theme}>
       <Router>
         <Routes>
           {routes.map((route, index) => {
