@@ -1,4 +1,6 @@
 import HeroSection from '~/components/common/HeroSection';
+import MediaSection from '~/components/common/MediaSection';
+import SectionWrapper from '~/components/common/SectionWrapper';
 
 function HomePage() {
   return (
@@ -6,10 +8,17 @@ function HomePage() {
       {/* HeroSection */}
       <HeroSection />
 
-      {/* Popular movie */}
-      {/* Popular tv series */}
-      {/* Rated movies */}
-      {/* Rated tv series */}
+      {/* MainSection */}
+      <div className="container mx-auto p-8">
+        {/* Popular movie */}
+        <SectionWrapper title="Popular Movies">
+          <MediaSection />
+        </SectionWrapper>
+
+        {/* Popular tv series */}
+        {/* Rated movies */}
+        {/* Rated tv series */}
+      </div>
     </div>
   );
 }

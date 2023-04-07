@@ -8,7 +8,7 @@ function App() {
   const { theme } = useSelector((state) => state.theme);
 
   return (
-    <div className={theme}>
+    <div className={theme + ' bg-skin-default'}>
       <Router>
         <Routes>
           {routes.map((route, index) => {

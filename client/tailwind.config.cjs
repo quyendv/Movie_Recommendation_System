@@ -20,14 +20,14 @@ module.exports = {
       },
       backgroundColor: {
         skin: {
-          default: 'var(--background)',
+          default: 'var(--background-default)',
           paper: 'var(--background-paper)',
         },
       },
       backgroundImage: {
         // skin not work (other key (not 'skin') also doesn't work) -> use directly
-        overlay: 'var(--gradient-img)',
-        'horizontal-overlay': 'var(--horizontal-gradient-img)',
+        overlayToTop: 'var(--overlay-to-top)',
+        overlayToRight: 'var(--overlay-to-right)',
       },
       animation: {
         dotCrp: 'animateDotCrp 1s linear forwards',

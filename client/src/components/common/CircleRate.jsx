@@ -1,4 +1,4 @@
-function CircleRate({ value = 75, size = 'small' }) {
+function CircleRate({ value, size = 'small' }) {
   const circleSize = size === 'large' ? 70 : size === 'medium' ? 55 : 25;
   const crpSize = size === 'large' ? '150px' : size === 'medium' ? '120px' : '60px';
   const textNumberSize = size === 'large' ? 'text-4xl' : size === 'medium' ? 'text-2xl' : 'text-base';
@@ -36,7 +36,7 @@ function CircleRate({ value = 75, size = 'small' }) {
         {/* circle:nth-child(2) -> style for stroke-dasharray & dashoffset, animate follow by .dot with origin opacity-0 */}
         <circle
           pathLength={440}
-          className="opacity-0 animate-fadeIn h-full w-full translate-x-[5px] translate-y-[5px] fill-transparent stroke-crpColor stroke-2 [stroke-dasharray:var(--dasharray)] [stroke-dashoffset:calc(var(--dasharray)-var(--dasharray)*var(--value)/100)]"
+          className="h-full w-full translate-x-[5px] translate-y-[5px] animate-fadeIn fill-transparent stroke-crpColor stroke-2 opacity-0 [stroke-dasharray:var(--dasharray)] [stroke-dashoffset:calc(var(--dasharray)-var(--dasharray)*var(--value)/100)]"
           cx={circleSize}
           cy={circleSize}
           r={circleSize}
@@ -45,7 +45,7 @@ function CircleRate({ value = 75, size = 'small' }) {
 
       {/* .number */}
       <div
-        className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${textNumberSize} font-bold tracking-wider`}
+        className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${textNumberSize} font-bold tracking-wider text-skin-contrast`}
       >
         {formatRate(value)}
       </div>

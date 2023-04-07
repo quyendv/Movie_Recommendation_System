@@ -12,26 +12,33 @@ function Header() {
   const { theme } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
 
-  const [headerBg, setHeaderBg] = useState(theme === themeModes.dark ? 'bg-transparent' : 'bg-skin-default');
+  const [headerBg, setHeaderBg] = useState(theme === themeModes.dark ? 'bg-transparent' : 'bg-skin-paper');
 
+  /**
+   * useEffect Update Background:
+   *  - scroll (forced to listen to the event again when themeState(redux) changes because the old listener is using the old theme's value and can't be updated -> add 'theme' dependence)
+   *  - switch theme (Don't use in handleSwitchTheme function immediately after dispatch, because state has not been updated at that time but after the function is done)
+   */
   useEffect(() => {
-    const onWindowScroll = () => {
-      const bg =
-        window.scrollY > 50 && theme === themeModes.dark
-          ? 'bg-skin-default'
-          : theme === themeModes.dark
-          ? 'bg-transparent'
-          : 'bg-skin-default';
-      setHeaderBg(bg);
-    };
-    window.addEventListener('scroll', onWindowScroll);
+    window.addEventListener('scroll', handleUpdateBgColor);
+    handleUpdateBgColor(); // optional: update state first time INSTEAD OF initial value's useState
+    return () => window.removeEventListener('scroll', handleUpdateBgColor);
+  }, [theme]); // must add 'theme' dependence, and only listenEvent again when switch theme
 
-    return () => window.removeEventListener('scroll', onWindowScroll);
-  }, []);
+  const handleUpdateBgColor = () => {
+    const bg = window.scrollY <= 50 && theme === themeModes.dark ? 'bg-transparent' : 'bg-skin-paper';
+    // console.log(window.scrollY, bg, headerBg, bg !== headerBg, theme); // check
+    setHeaderBg(bg); // setState auto only update & re-render if oldState !== newState
+  };
+
+  const handleSwitchTheme = () => {
+    dispatch(setTheme(theme === themeModes.dark ? themeModes.light : themeModes.dark));
+    // use useEffect instead of calling handleUpdateBgColor fn here, due to state isn't updated immediately
+  };
 
   return (
     // Wrapper
-    <header className={`fixed left-0 top-0 z-10 flex h-header w-full items-center px-6 ${headerBg}`}>
+    <header className={`fixed left-0 top-0 z-20 flex h-header w-full items-center px-6 ${headerBg}`}>
       {/* Menu mobile: //TODO Hamburger */}
 
       {/* Logo */}
@@ -72,9 +79,7 @@ function Header() {
       {/* Theme switcher */}
       <button
         className="rounded-full p-3 text-lg text-skin-contrast hover:bg-[rgba(255,255,255,0.1)]"
-        onClick={() => {
-          dispatch(setTheme(theme === themeModes.dark ? themeModes.light : themeModes.dark));
-        }}
+        onClick={handleSwitchTheme}
       >
         {theme === themeModes.light && <BsFillSunFill size={20} />}
         {theme === themeModes.dark && <BsFillMoonStarsFill />}

@@ -21,15 +21,14 @@ const axiosPublicInstance = axios.create({
 
 // Interceptors
 axiosPrivateInstance.interceptors.request.use(
-  async (config) => {
-    return {
-      ...config,
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-      },
-    };
-  },
+  (config) => ({
+    ...config,
+    // @ts-ignore
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+    },
+  }),
   (error) => {
     return Promise.reject(error);
   },
@@ -46,14 +45,13 @@ axiosPrivateInstance.interceptors.response.use(
 );
 
 axiosPublicInstance.interceptors.request.use(
-  async (config) => {
-    return {
-      ...config,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-  },
+  (config) => ({
+    ...config,
+    // @ts-ignore
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }),
   (error) => {
     // return Promise.reject(error);
     throw error.response.data;

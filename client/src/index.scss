@@ -8,9 +8,10 @@
     --primary: #ff0000;
     --secondary: #f44336;
     --contrast-text: #000000;
-    --background: #f5f5f5;
-    --gradient-img: linear-gradient(to top, rgba(245, 245, 245, 1), rgba(0, 0, 0, 0));
-    --horizontal-gradient-img: linear-gradient(to right, rgba(245, 245, 245, 1), rgba(0, 0, 0, 0));
+    --background-default: #f5f5f5; // for body (body tag or App component)
+    --background-paper: #ffffff; // for header, footer, ...
+    --overlay-to-top: linear-gradient(to top, rgba(245, 245, 245, 1), rgba(0, 0, 0, 0));
+    --overlay-to-right: linear-gradient(to right, rgba(245, 245, 245, 1), rgba(0, 0, 0, 0));
     // Circle Rate Progress
     --crp-circle1-color: #191919;
     --crp-color: #04fc43;
@@ -19,10 +20,13 @@
     --primary: #ff0000;
     --secondary: #f44336;
     --contrast-text: #ffffff;
-    --background: #000000;
+    --background-default: #000000;
     --background-paper: #131313;
-    --gradient-img: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-    --horizontal-gradient-img: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    --overlay-to-top: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    --overlay-to-right: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    // Circle Rate Progress
+    --crp-circle1-color: rgba(25, 25, 25, 0);
+    --crp-color: #04fc43;
   }
 }
 

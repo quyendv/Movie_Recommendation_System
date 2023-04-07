@@ -1,10 +1,11 @@
-// const routesConfigs = {
-//   home: '/',
-//   mediaList: (type) => `/${type}}`,
-//   mediaDetail: (type, id) => `/${type}/${id}`,
-//   person: (id) => `/person/${id}`,
-//   favorites: '/favorites',
-// };
+const routesGeneration = {
+  // home: '/',
+  // favorites: '/favorites',
+  mediaList: (type) => `/${type}}`,
+  mediaDetail: (type, id) => `/${type}/${id}`,
+  person: (id) => `/person/${id}`,
+};
+
 const routesConfigs = {
   home: '/',
   movie: '/movie',
