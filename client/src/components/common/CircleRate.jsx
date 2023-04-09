@@ -43,7 +43,7 @@ function CircleRate({ value, size = 'small' }) {
         />
       </svg>
 
-      {/* .number */}
+      {/* .number: //TODO animate number counter */}
       <div
         className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${textNumberSize} font-bold tracking-wider text-skin-contrast`}
       >

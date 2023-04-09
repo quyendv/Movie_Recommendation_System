@@ -12,8 +12,9 @@
     --background-paper: #ffffff; // for header, footer, ...
     --overlay-to-top: linear-gradient(to top, rgba(245, 245, 245, 1), rgba(0, 0, 0, 0));
     --overlay-to-right: linear-gradient(to right, rgba(245, 245, 245, 1), rgba(0, 0, 0, 0));
+    --nav-hover: #0000001a;
     // Circle Rate Progress
-    --crp-circle1-color: #191919;
+    --crp-circle1-color: #19191926;
     --crp-color: #04fc43;
   }
   .dark {
@@ -24,8 +25,9 @@
     --background-paper: #131313;
     --overlay-to-top: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     --overlay-to-right: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    --nav-hover: #ffffff1a;
     // Circle Rate Progress
-    --crp-circle1-color: rgba(25, 25, 25, 0);
+    --crp-circle1-color: #191919;
     --crp-color: #04fc43;
   }
 }
@@ -49,4 +51,49 @@ textarea,
 [tabIndex] {
   outline: none;
   border: none;
+}
+
+// Component
+@layer components {
+  // NavigationSwiper
+  .navigation-swiper {
+    .swiper-slide {
+      @apply w-full pb-12 opacity-60; // pb to show swiper-pagination (dots...)
+      &.swiper-slide-active {
+        @apply opacity-100;
+      }
+    }
+    .swiper-pagination-bullet {
+      // Dot in pagination, can click
+      @apply bg-skin-contrast;
+    }
+    .swiper-button-next,
+    .swiper-button-prev {
+      @apply text-skin-contrast;
+      &::after {
+        @apply text-base lg:text-3xl;
+      }
+    }
+    .swiper {
+      @apply h-max w-full px-4 lg:px-16; // px to show button-next/prev outer slider
+    }
+  }
+
+  // AutoSwiper: for responsive, multiple slidePerView
+  .auto-swiper {
+    .swiper-slide {
+      @apply w-1/2 sm:w-[35%] lg:w-1/4 xl:w-[20.5%];
+    }
+  }
+
+  // typoLines
+  .typoLines {
+    --lines: 3; // default, re-assign after .typoLines
+    --align: justify; // default
+    display: -webkit-box;
+    -webkit-line-clamp: var(--lines);
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-align: var(--align);
+  }
 }

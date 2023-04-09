@@ -2,10 +2,11 @@ import Header from '../common/Header';
 
 function MainLayout({ children }) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex min-h-screen flex-col">
       {/* Header */}
       <Header />
 
+      {/* MainPage */}
       <>{children}</>
 
       {/* Footer */}

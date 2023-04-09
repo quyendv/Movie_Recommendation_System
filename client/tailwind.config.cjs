@@ -7,6 +7,7 @@ module.exports = {
         header: '64px',
       },
       spacing: {
+        header: '64px',
         crpSize: 'var(--crp-size)',
       },
       colors: {
@@ -14,6 +15,7 @@ module.exports = {
           primary: 'var(--primary)',
           secondary: 'var(--secondary)',
           contrast: 'var(--contrast-text)',
+          navHover: 'var(--nav-hover)',
         },
         crpColor: 'var(--crp-color)',
         crpCircle1: 'var(--crp-circle1-color)',

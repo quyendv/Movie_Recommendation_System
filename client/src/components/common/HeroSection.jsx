@@ -13,7 +13,7 @@ import CircleRate from './CircleRate';
 function HeroSection() {
   return (
     // Wrapper: gradient at bottom to 30%,
-    <div className="before:bg-overlayToTop relative text-skin-contrast before:pointer-events-none before:absolute before:bottom-0 before:left-0 before:z-10 before:h-[30%] before:w-full">
+    <div className="relative text-skin-contrast before:pointer-events-none before:absolute before:bottom-0 before:left-0 before:z-10 before:h-[30%] before:w-full before:bg-overlayToTop">
       <Swiper
         // className="h-max w-full" // optional
         // spaceBetween={50} // optional
@@ -38,8 +38,8 @@ function HeroSection() {
 
           {/* Content:(Desc) Wrapper > Container */}
           <div className="absolute inset-0 sm:px-[10px] md:px-20 lg:px-40">
-            <div className="sm:unset flex h-full flex-col justify-center gap-10 px-8 text-skin-contrast md:w-[45%] lg:w-[50%]">
-              <h3 className="overflow-hidden text-2xl font-bold [-webkit-box-orient:vertical] [-webkit-line-clamp:2] [display:-webkit-box] lg:text-4xl">
+            <div className="sm:unset flex h-full flex-col justify-center gap-8 px-8 text-skin-contrast md:w-[45%] lg:w-[50%]">
+              <h3 className="typoLines text-2xl font-bold [--lines:2] [--align:left] lg:text-4xl">
                 Puss in Boots: The Last Wish
               </h3>
               <div className="flex items-center gap-2">
@@ -49,7 +49,7 @@ function HeroSection() {
                 <span className="rounded-full bg-skin-primary px-2 pb-1.5 pt-1 text-white">Animation</span>
                 <span className="rounded-full bg-skin-primary px-2 pb-1.5 pt-1 text-white">Family</span>
               </div>
-              <p className="overflow-hidden [-webkit-box-orient:vertical] [display:-webkit-box] [-webkit-line-clamp:3]">
+              <p className="typoLines [--lines:3]">
                 Puss in Boots discovers that his passion for adventure has taken its toll: He has burned through eight
                 of his nine lives, leaving him with only one life left. Puss sets out on an epic journey to find the
                 mythical Last Wish and restore his nine lives.
@@ -76,8 +76,8 @@ function HeroSection() {
 
           {/* Content:(Desc) Wrapper > Container */}
           <div className="absolute inset-0 sm:px-[10px] md:px-20 lg:px-40">
-            <div className="sm:unset flex h-full flex-col justify-center gap-10 px-8 text-skin-contrast md:w-[45%] lg:w-[50%]">
-              <h3 className="overflow-hidden text-2xl font-bold [-webkit-box-orient:vertical] [-webkit-line-clamp:2] [display:-webkit-box] lg:text-4xl">
+            <div className="sm:unset flex h-full flex-col justify-center gap-8 px-8 text-skin-contrast md:w-[45%] lg:w-[50%]">
+              <h3 className="typoLines text-2xl font-bold [--lines:2] [--align:left] lg:text-4xl">
                 Puss in Boots: The Last Wish
               </h3>
               <div className="flex items-center gap-2">
@@ -87,7 +87,7 @@ function HeroSection() {
                 <span className="rounded-full bg-skin-primary px-2 pb-1.5 pt-1 text-white">Animation</span>
                 <span className="rounded-full bg-skin-primary px-2 pb-1.5 pt-1 text-white">Family</span>
               </div>
-              <p className="overflow-hidden [-webkit-box-orient:vertical] [display:-webkit-box] [-webkit-line-clamp:3]">
+              <p className="typoLines [--lines:3]">
                 Puss in Boots discovers that his passion for adventure has taken its toll: He has burned through eight
                 of his nine lives, leaving him with only one life left. Puss sets out on an epic journey to find the
                 mythical Last Wish and restore his nine lives.

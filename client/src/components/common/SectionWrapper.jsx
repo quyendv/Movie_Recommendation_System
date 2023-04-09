@@ -1,7 +1,7 @@
-function SectionWrapper({ title, children }) {
+function SectionWrapper({ title, children, className = '' }) {
   return (
     // Wrapper ~ Container > TitleGroup + Children
-    <div className="mt-20 flex flex-col gap-8">
+    <div className={`mt-20 flex flex-col gap-8 ${className}`}>
       {title && (
         <div className="relative px-5 lg:px-0">
           {/* Title */}

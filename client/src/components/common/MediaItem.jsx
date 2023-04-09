@@ -3,7 +3,7 @@ import { MdFavorite } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import CircleRate from './CircleRate';
 
-function MediaItem({ media, mediaType, isFavorite = true }) {
+function MediaItem({ media, mediaType, isFavorite = false }) {
   return (
     // TODO: config path
     <Link to={'/movies/123456'}>
@@ -36,9 +36,7 @@ function MediaItem({ media, mediaType, isFavorite = true }) {
             {/* Release Date: //TODO */}
             <p>2022</p>
             {/* Title */}
-            <p className="font-bold [-webkit-box-orient:vertical] [display:-webkit-box] [-webkit-line-clamp:1] [overflow:hidden]">
-              Avatar: The Way of Water
-            </p>
+            <p className="typoLines font-bold [--lines:1]">Avatar: The Way of Water</p>
           </div>
         </>
 

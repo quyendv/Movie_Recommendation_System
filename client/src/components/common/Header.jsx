@@ -37,7 +37,7 @@ function Header() {
   };
 
   return (
-    // Wrapper
+    // Wrapper //TODO: hoverEffect navLink is not active
     <header className={`fixed left-0 top-0 z-20 flex h-header w-full items-center px-6 ${headerBg}`}>
       {/* Menu mobile: //TODO Hamburger */}
 
@@ -47,28 +47,36 @@ function Header() {
       {/* Navigation: //TODO: refactor to a Component */}
       <nav className="ml-10 flex flex-row gap-3 font-medium uppercase tracking-wide text-skin-contrast">
         <NavLink
-          className={({ isActive }) => `rounded px-2 py-1.5 ${isActive ? 'bg-skin-secondary text-white' : ''}`}
+          className={({ isActive }) =>
+            `rounded px-2 py-1.5 ${isActive ? 'bg-skin-secondary text-white' : 'hover:bg-skin-navHover'}`
+          }
           to={routesConfigs.home}
           end
         >
           Home
         </NavLink>
         <NavLink
-          className={({ isActive }) => `rounded px-2 py-1.5 ${isActive ? 'bg-skin-secondary text-white' : ''}`}
+          className={({ isActive }) =>
+            `rounded px-2 py-1.5 ${isActive ? 'bg-skin-secondary text-white' : 'hover:bg-skin-navHover'}`
+          }
           to={routesConfigs.movie}
           end
         >
           Movies
         </NavLink>
         <NavLink
-          className={({ isActive }) => `rounded px-2 py-1.5 ${isActive ? 'bg-skin-secondary text-white' : ''}`}
+          className={({ isActive }) =>
+            `rounded px-2 py-1.5 ${isActive ? 'bg-skin-secondary text-white' : 'hover:bg-skin-navHover'}`
+          }
           to={routesConfigs.tv}
           end
         >
           TV Series
         </NavLink>
         <NavLink
-          className={({ isActive }) => `rounded px-2 py-1.5 ${isActive ? 'bg-skin-secondary text-white' : ''}`}
+          className={({ isActive }) =>
+            `rounded px-2 py-1.5 ${isActive ? 'bg-skin-secondary text-white' : 'hover:bg-skin-navHover'}`
+          }
           to={routesConfigs.search}
           end
         >
@@ -78,7 +86,7 @@ function Header() {
 
       {/* Theme switcher */}
       <button
-        className="rounded-full p-3 text-lg text-skin-contrast hover:bg-[rgba(255,255,255,0.1)]"
+        className="rounded-full p-3 text-lg text-skin-contrast hover:bg-skin-navHover"
         onClick={handleSwitchTheme}
       >
         {theme === themeModes.light && <BsFillSunFill size={20} />}

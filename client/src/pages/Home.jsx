@@ -9,15 +9,26 @@ function HomePage() {
       <HeroSection />
 
       {/* MainSection */}
-      <div className="container mx-auto p-8">
+      <div className="container mx-auto p-4 sm:p-8">
         {/* Popular movie */}
         <SectionWrapper title="Popular Movies">
           <MediaSection />
         </SectionWrapper>
 
         {/* Popular tv series */}
+        <SectionWrapper title="Popular Series">
+          <MediaSection />
+        </SectionWrapper>
+
         {/* Rated movies */}
+        <SectionWrapper title="Rated Movies">
+          <MediaSection />
+        </SectionWrapper>
+
         {/* Rated tv series */}
+        <SectionWrapper title="Rated Series">
+          <MediaSection />
+        </SectionWrapper>
       </div>
     </div>
   );
