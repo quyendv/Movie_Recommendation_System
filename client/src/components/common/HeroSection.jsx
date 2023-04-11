@@ -16,7 +16,6 @@ function HeroSection() {
     <div className="relative text-skin-contrast before:pointer-events-none before:absolute before:bottom-0 before:left-0 before:z-10 before:h-[30%] before:w-full before:bg-overlayToTop">
       <Swiper
         // className="h-max w-full" // optional
-        // spaceBetween={50} // optional
         modules={[Autoplay]}
         slidesPerView={1}
         grabCursor
@@ -28,7 +27,7 @@ function HeroSection() {
         speed={800}
         loop
       >
-        {/* HeroItem: refactoring <SwiperSlide></SwiperSlide> to a component will be FE error -> only refactor children in SwiperSlide */}
+        {/* HeroItemBox: refactoring <SwiperSlide></SwiperSlide> to a component will be FE error -> only refactor children in SwiperSlide */}
         <SwiperSlide>
           {/* Poster: Img or backgroundImg (pt: xs: "130%",sm: "80%",md mui ~ lg tailwind: "60%",lg mui ~ xl tailwind: "45% ") -> //TODO: change poster */}
           <div className="bg-[url('/src/assets/images/hero-poster.jpg')] bg-cover bg-top bg-no-repeat pt-[130%] sm:pt-[80%] lg:pt-[60%] xl:pt-[45%]"></div>

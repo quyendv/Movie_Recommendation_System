@@ -48,7 +48,7 @@ function Header() {
       <nav className="ml-10 flex flex-row gap-3 font-medium uppercase tracking-wide text-skin-contrast">
         <NavLink
           className={({ isActive }) =>
-            `rounded px-2 py-1.5 ${isActive ? 'bg-skin-secondary text-white' : 'hover:bg-skin-navHover'}`
+            `rounded px-2 py-1.5 ${isActive ? 'bg-skin-primary text-white' : 'hover:bg-skin-navHover'}`
           }
           to={routesConfigs.home}
           end
@@ -57,7 +57,7 @@ function Header() {
         </NavLink>
         <NavLink
           className={({ isActive }) =>
-            `rounded px-2 py-1.5 ${isActive ? 'bg-skin-secondary text-white' : 'hover:bg-skin-navHover'}`
+            `rounded px-2 py-1.5 ${isActive ? 'bg-skin-primary text-white' : 'hover:bg-skin-navHover'}`
           }
           to={routesConfigs.movie}
           end
@@ -66,7 +66,7 @@ function Header() {
         </NavLink>
         <NavLink
           className={({ isActive }) =>
-            `rounded px-2 py-1.5 ${isActive ? 'bg-skin-secondary text-white' : 'hover:bg-skin-navHover'}`
+            `rounded px-2 py-1.5 ${isActive ? 'bg-skin-primary text-white' : 'hover:bg-skin-navHover'}`
           }
           to={routesConfigs.tv}
           end
@@ -75,7 +75,7 @@ function Header() {
         </NavLink>
         <NavLink
           className={({ isActive }) =>
-            `rounded px-2 py-1.5 ${isActive ? 'bg-skin-secondary text-white' : 'hover:bg-skin-navHover'}`
+            `rounded px-2 py-1.5 ${isActive ? 'bg-skin-primary text-white' : 'hover:bg-skin-navHover'}`
           }
           to={routesConfigs.search}
           end

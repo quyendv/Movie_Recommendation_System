@@ -6,8 +6,8 @@ function MainLayout({ children }) {
       {/* Header */}
       <Header />
 
-      {/* MainPage */}
-      <>{children}</>
+      {/* MainPage ~ MainContent */}
+      <main className="flex-1 overflow-hidden">{children}</main>
 
       {/* Footer */}
     </div>

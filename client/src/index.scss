@@ -55,6 +55,11 @@ textarea,
 
 // Component
 @layer components {
+  // MainSection: body: Header + MainContent(&:> Hero + MainSection)
+  .main-section {
+    @apply mx-auto w-full max-w-[1366px] p-4;
+  }
+
   // NavigationSwiper
   .navigation-swiper {
     .swiper-slide {

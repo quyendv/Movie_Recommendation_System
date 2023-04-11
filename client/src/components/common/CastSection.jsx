@@ -17,7 +17,7 @@ function CastSection() {
             {/* Image person */}
             <div className='relative bg-[url("/src/assets/images/cast-person.jpg")] bg-cover bg-center pt-[120%]'>
               {/* Desc */}
-              <div className="absolute bottom-0 h-max w-full bg-black/60 p-1 text-center">
+              <div className="absolute bottom-0 h-max w-full bg-black/60 p-1 text-center text-white">
                 <p className="typoLines [--lines:1]">Sam Worthington</p>
               </div>
             </div>
@@ -31,7 +31,7 @@ function CastSection() {
             {/* Image person */}
             <div className='relative bg-[url("/src/assets/images/cast-person.jpg")] bg-cover bg-center pt-[120%]'>
               {/* Desc */}
-              <div className="absolute bottom-0 h-max w-full bg-black/60 p-1 text-center">
+              <div className="absolute bottom-0 h-max w-full bg-black/60 p-1 text-center text-white">
                 <p className="typoLines [--lines:1]">Sam Worthington</p>
               </div>
             </div>
@@ -45,7 +45,7 @@ function CastSection() {
             {/* Image person */}
             <div className='relative bg-[url("/src/assets/images/cast-person.jpg")] bg-cover bg-center pt-[120%]'>
               {/* Desc */}
-              <div className="absolute bottom-0 h-max w-full bg-black/60 p-1 text-center">
+              <div className="absolute bottom-0 h-max w-full bg-black/60 p-1 text-center text-white">
                 <p className="typoLines [--lines:1]">Sam Worthington</p>
               </div>
             </div>
@@ -59,7 +59,7 @@ function CastSection() {
             {/* Image person */}
             <div className='relative bg-[url("/src/assets/images/cast-person.jpg")] bg-cover bg-center pt-[120%]'>
               {/* Desc */}
-              <div className="absolute bottom-0 h-max w-full bg-black/60 p-1 text-center">
+              <div className="absolute bottom-0 h-max w-full bg-black/60 p-1 text-center text-white">
                 <p className="typoLines [--lines:1]">Sam Worthington</p>
               </div>
             </div>
@@ -73,7 +73,7 @@ function CastSection() {
             {/* Image person */}
             <div className='relative bg-[url("/src/assets/images/cast-person.jpg")] bg-cover bg-center pt-[120%]'>
               {/* Desc */}
-              <div className="absolute bottom-0 h-max w-full bg-black/60 p-1 text-center">
+              <div className="absolute bottom-0 h-max w-full bg-black/60 p-1 text-center text-white">
                 <p className="typoLines [--lines:1]">Sam Worthington</p>
               </div>
             </div>

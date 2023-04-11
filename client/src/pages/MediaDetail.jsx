@@ -20,7 +20,7 @@ function MediaDetail() {
       <ImageHeader imgPath="/src/assets/images/image-header.jpg" />
 
       {/* Wrapper (higher ImageHeader: zIndex) > Content + Videos + Backdrop + Posters + Review(cmt) + Recommendation  */}
-      <div className="container z-10 mx-auto p-4 text-skin-contrast sm:p-8">
+      <div className="container relative z-10 mx-auto p-4 text-skin-contrast sm:p-8">
         {/* Content: (translateToTop above ImageHeader) > container (flexbox) > poster + infos */}
         <div className="-mt-40 lg:-mt-60 xl:-mt-80">
           {/* Container: < laptop (lg): flex-col items-center, else unset */}

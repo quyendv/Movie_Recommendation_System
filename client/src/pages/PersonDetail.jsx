@@ -4,7 +4,7 @@ import SectionWrapper from '~/components/common/SectionWrapper';
 function PersonDetail() {
   return (
     // Wrapper (custom container: // TODO convert container default to this) > overview + mediaGrid
-    <div className="mx-auto mt-header w-full max-w-[1336px] p-4">
+    <div className="main-section mt-header">
       {/* Person Overview */}
       <div className="relative flex flex-col lg:flex-row">
         {/* Image */}

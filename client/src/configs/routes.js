@@ -8,7 +8,7 @@ const routesGeneration = {
 
 const routesConfigs = {
   home: '/',
-  movie: '/movie',
+  movie: '/movies',
   tv: '/tv',
   mediaList: '/:mediaType',
   mediaDetail: '/:mediaType/:mediaId',
