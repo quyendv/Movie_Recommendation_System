@@ -8,7 +8,9 @@ function App() {
   const { theme } = useSelector((state) => state.theme);
 
   return (
-    <div className={theme + ' bg-skin-default'}>
+    // AppWrapper: set bg-default + min-h-screen here or set bg-default for body
+    <div className={theme + ' min-h-screen min-w-full bg-skin-default'}>
+      {/* App Router */}
       <Router>
         <Routes>
           {routes.map((route, index) => {
@@ -22,6 +24,7 @@ function App() {
           {/* // TODO: Page Not Found */}
         </Routes>
       </Router>
+
       {/* // TODO: Toastify */}
     </div>
   );
