@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import routesConfigs from '~/configs/routes';
+import { routesConfigs } from '~/configs/routes.configs';
 
 function ProtectedLayout({ children }) {
   const user = null;

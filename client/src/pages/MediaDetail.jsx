@@ -38,7 +38,7 @@ function MediaDetail() {
 
                 {/* rate & genres */}
                 <div className="flex items-center gap-2">
-                  <CircleRate value={77} />
+                  <CircleRate value={7.7} />
                   <span className="full rounded-full bg-skin-primary px-2 pb-1 pt-0.5 text-white">Science Fiction</span>
                   <span className="full rounded-full bg-skin-primary px-2 pb-1 pt-0.5 text-white">Adventure</span>
                 </div>

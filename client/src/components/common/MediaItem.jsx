@@ -32,7 +32,7 @@ function MediaItem({ media, mediaType, isFavorite = false }) {
           {/* Media Info */}
           <div className="absolute bottom-0 flex w-full flex-col gap-2 p-2.5 text-skin-contrast opacity-100 transition duration-300 group-hover:opacity-100 lg:-bottom-5 lg:gap-4 lg:p-[2rem_1rem] lg:opacity-0">
             {/* Rate  */}
-            <CircleRate value={75} />
+            <CircleRate value={7.5} />
             {/* Release Date: //TODO */}
             <p>2022</p>
             {/* Title */}

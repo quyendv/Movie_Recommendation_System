@@ -19,4 +19,4 @@ const routesConfigs = {
   search: '/search',
 };
 
-export default routesConfigs;
+export { routesConfigs, routesGeneration };

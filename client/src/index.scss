@@ -16,6 +16,18 @@
     // Circle Rate Progress
     --crp-circle1-color: #19191926;
     --crp-color: #04fc43;
+    // Linear Progress
+    --lp-bg-image: linear-gradient(
+      to right,
+      transparent 50%,
+      currentColor 50%,
+      currentColor 60%,
+      transparent 60%,
+      transparent 71.5%,
+      currentColor 71.5%,
+      currentColor 84%,
+      transparent 84%
+    );
   }
   .dark {
     --primary: #ff0000;
@@ -29,6 +41,18 @@
     // Circle Rate Progress
     --crp-circle1-color: #191919;
     --crp-color: #04fc43;
+    // Linear Progress
+    --lp-bg-image: linear-gradient(
+      to right,
+      transparent 50%,
+      currentColor 50%,
+      currentColor 60%,
+      transparent 60%,
+      transparent 71.5%,
+      currentColor 71.5%,
+      currentColor 84%,
+      transparent 84%
+    );
   }
 }
 
@@ -96,11 +120,7 @@ textarea,
   .typoLines {
     --lines: 3; // default, re-assign after .typoLines
     --align: justify; // default
-    display: -webkit-box;
-    -webkit-line-clamp: var(--lines);
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-align: var(--align);
+    @apply overflow-hidden text-[var(--align)] [-webkit-box-orient:vertical] [-webkit-line-clamp:var(--lines)] [display:-webkit-box];
   }
 
   // Linear Progress Bar
@@ -115,33 +135,14 @@ textarea,
     }
     // Indeterminate
     &:indeterminate {
-      background-size: 200% 100%;
-      background-image: linear-gradient(
-        to right,
-        transparent 50%,
-        currentColor 50%,
-        currentColor 60%,
-        transparent 60%,
-        transparent 71.5%,
-        currentColor 71.5%,
-        currentColor 84%,
-        transparent 84%
-      );
-      animation: linearProgress 2s infinite linear;
+      @apply animate-linearProgress bg-linearProgress bg-[200%_100%];
     }
-    @keyframes linearProgress {
-      0% {
-        background-size: 200% 100%;
-        background-position: left -31.25% top 0%;
-      }
-      50% {
-        background-size: 800% 100%;
-        background-position: left -49% top 0%;
-      }
-      100% {
-        background-size: 400% 100%;
-        background-position: left -102% top 0%;
-      }
-    }
+  }
+
+  // Background-Image for backdrop/poster
+  .backdrop-poster {
+    --backdrop-poster: url('/src/assets/images/hero-poster.jpg'); // default
+    @apply bg-backdropPoster bg-cover bg-top bg-no-repeat;
+    // bg-[url('/src/assets/images/hero-poster.jpg')]
   }
 }

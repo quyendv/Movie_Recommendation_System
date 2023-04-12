@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { BsFillMoonStarsFill, BsFillSunFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import routesConfigs from '~/configs/routes';
-import { themeModes } from '~/constants/theme';
+import { routesConfigs } from '~/configs/routes.configs';
+import { themeModes } from '~/configs/theme.configs';
 import { setTheme } from '~/redux/features/themeSlice';
 import Logo from './Logo';
 

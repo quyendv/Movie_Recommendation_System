@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import routesConfigs from '~/configs/routes';
+import { routesConfigs } from '~/configs/routes.configs';
 
 function Logo() {
   return (

@@ -1,5 +1,5 @@
 import ProtectedLayout from '~/components/layouts/ProtectedLayout';
-import routesConfigs from '~/configs/routes';
+import { routesConfigs } from '~/configs/routes.configs';
 import Favorites from '~/pages/Favorites';
 import HomePage from '~/pages/Home';
 import MediaDetail from '~/pages/MediaDetail';

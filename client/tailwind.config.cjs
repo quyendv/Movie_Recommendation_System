@@ -30,10 +30,13 @@ module.exports = {
         // skin not work (other key (not 'skin') also doesn't work) -> use directly
         overlayToTop: 'var(--overlay-to-top)',
         overlayToRight: 'var(--overlay-to-right)',
+        linearProgress: 'var(--lp-bg-image)',
+        backdropPoster: 'var(--backdrop-poster)',
       },
       animation: {
         dotCrp: 'animateDotCrp 1s linear forwards',
         fadeIn: 'fadeIn .75s linear 1s forwards',
+        linearProgress: 'linearProgress 2s infinite linear',
       },
       keyframes: {
         animateDotCrp: {
@@ -41,7 +44,7 @@ module.exports = {
             transform: 'rotate(0deg)',
           },
           '100%': {
-            transform: 'rotate(calc(3.6deg*var(--value)))',
+            transform: 'rotate(calc(36deg*var(--value)))',
           },
         },
         fadeIn: {
@@ -50,6 +53,20 @@ module.exports = {
           },
           '100%': {
             opacity: 1,
+          },
+        },
+        linearProgress: {
+          '0%': {
+            'background-size': '200% 100%',
+            'background-position': 'left -31.25% top 0%',
+          },
+          '50%': {
+            'background-size': '800% 100%',
+            'background-position': 'left -49% top 0%',
+          },
+          '100%': {
+            'background-size': '400% 100%',
+            'background-position': 'left -102% top 0%',
           },
         },
       },
