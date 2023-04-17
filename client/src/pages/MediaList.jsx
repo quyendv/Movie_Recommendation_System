@@ -46,7 +46,6 @@ function MediaList() {
 
     // if change navigation: reset page, category
     if (mediaType !== prevMediaType) {
-      console.log('go here');
       setCurrentCategoryIndex(0);
       setCurrentPage(1);
     }
