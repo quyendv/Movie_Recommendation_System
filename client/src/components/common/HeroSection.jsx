@@ -75,7 +75,7 @@ function HeroSection({ mediaType = 'movie', mediaCategory = 'popular' }) {
       });
       if (response) setMedias(response.results);
       // TODO: toast if err, globalLoading
-      console.log({ name: 'getMedias', response, err });
+      console.log({ name: 'HeroSection getMedias', response, err });
     };
 
     const getGenres = async () => {
@@ -86,7 +86,7 @@ function HeroSection({ mediaType = 'movie', mediaCategory = 'popular' }) {
         getMedias();
       }
       // TODO: if err
-      console.log({ name: 'getGenres', response, err });
+      console.log({ name: 'HeroSection getGenres', response, err });
     };
 
     getGenres();

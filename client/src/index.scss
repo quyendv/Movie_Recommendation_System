@@ -120,7 +120,8 @@ textarea,
   .typoLines {
     --lines: 3; // default, re-assign after .typoLines
     --align: justify; // default
-    @apply overflow-hidden text-[var(--align)] [-webkit-box-orient:vertical] [-webkit-line-clamp:var(--lines)] [display:-webkit-box];
+    // TODO: arbitrary type for text-align
+    @apply overflow-hidden [-webkit-box-orient:vertical] [-webkit-line-clamp:var(--lines)] [display:-webkit-box] [text-align:var(--align)];
   }
 
   // Linear Progress Bar
@@ -142,7 +143,7 @@ textarea,
   // Background-Image for backdrop/poster
   .backdrop-poster {
     --backdrop-poster: url('/src/assets/images/hero-poster.jpg'); // default
-    @apply bg-backdropPoster bg-cover bg-top bg-no-repeat;
+    @apply relative bg-backdropPoster bg-cover bg-top bg-no-repeat;
     // bg-[url('/src/assets/images/hero-poster.jpg')]
   }
 }

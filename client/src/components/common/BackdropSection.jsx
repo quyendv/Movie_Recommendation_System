@@ -1,33 +1,20 @@
 import { SwiperSlide } from 'swiper/react';
+import tmdbConfigs from '~/configs/tmdb.configs';
 import NavigationSwiper from './NavigationSwiper';
 
-function BackdropSection() {
+function BackdropSection({ backdrops }) {
   return (
     <NavigationSwiper>
-      {/* BackdropItem Box */}
-      <SwiperSlide>
-        <div className="bg-[url('/src/assets/images/movie-backdrop.jpg')] bg-cover bg-center pt-[60%]" />
-      </SwiperSlide>
-
-      {/* BackdropItem Box */}
-      <SwiperSlide>
-        <div className="bg-[url('/src/assets/images/movie-backdrop.jpg')] bg-cover bg-center pt-[60%]" />
-      </SwiperSlide>
-
-      {/* BackdropItem Box */}
-      <SwiperSlide>
-        <div className="bg-[url('/src/assets/images/movie-backdrop.jpg')] bg-cover bg-center pt-[60%]" />
-      </SwiperSlide>
-
-      {/* BackdropItem Box */}
-      <SwiperSlide>
-        <div className="bg-[url('/src/assets/images/movie-backdrop.jpg')] bg-cover bg-center pt-[60%]" />
-      </SwiperSlide>
-
-      {/* BackdropItem Box */}
-      <SwiperSlide>
-        <div className="bg-[url('/src/assets/images/movie-backdrop.jpg')] bg-cover bg-center pt-[60%]" />
-      </SwiperSlide>
+      {backdrops?.map((backdrop, index) => (
+        // BackdropItem Box
+        <SwiperSlide key={index}>
+          <div
+            // @ts-ignore
+            style={{ '--backdrop-poster': `url(${tmdbConfigs.backdropPath(backdrop.file_path)})` }}
+            className="backdrop-poster pt-[60%]"
+          />
+        </SwiperSlide>
+      ))}
     </NavigationSwiper>
   );
 }

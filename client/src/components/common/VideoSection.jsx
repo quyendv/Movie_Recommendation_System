@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { useEffect, useRef } from 'react';
 import { SwiperSlide } from 'swiper/react';
+import tmdbConfigs from '~/configs/tmdb.configs';
 import NavigationSwiper from './NavigationSwiper';
 
 const VideoItem = ({ video }) => {
@@ -15,29 +16,21 @@ const VideoItem = ({ video }) => {
 
   return (
     <div className="h-max">
-      <iframe ref={iframeRef} width="100%" src="https://www.youtube.com/embed/xHNMEvYPdZE?controls=0" title="" />
+      <iframe ref={iframeRef} width="100%" src={tmdbConfigs.youtubePath(video?.key)} title="" />
     </div>
   );
 };
 
-function VideoSection() {
+function VideoSection({ videos }) {
   return (
     // NavigationSwiper: .swiper-slide(&.-active) <pb for pagination>, .swiper-pagination-bullet, .swiper-button-next/prev, .swiper: padding for navigationBtn,
     <NavigationSwiper>
-      {/* VideoItem Box */}
-      <SwiperSlide>
-        <VideoItem video={'https://www.youtube.com/embed/xHNMEvYPdZE?controls=0'} />
-      </SwiperSlide>
-
-      {/* VideoItem Box */}
-      <SwiperSlide>
-        <VideoItem video={'https://www.youtube.com/embed/xHNMEvYPdZE?controls=0'} />
-      </SwiperSlide>
-
-      {/* VideoItem Box */}
-      <SwiperSlide>
-        <VideoItem video={'https://www.youtube.com/embed/xHNMEvYPdZE?controls=0'} />
-      </SwiperSlide>
+      {videos?.map((video, index) => (
+        // VideoItem Box
+        <SwiperSlide key={index}>
+          <VideoItem video={video} />
+        </SwiperSlide>
+      ))}
     </NavigationSwiper>
   );
 }

@@ -4,8 +4,6 @@ function CircleRate({ value, size = 'small' }) {
   const crpSize = size === 'large' ? '150px' : size === 'medium' ? '120px' : '60px';
   const textNumberSize = size === 'large' ? 'text-4xl' : size === 'medium' ? 'text-2xl' : 'text-base';
 
-  const formatRate = (/** @type {number} */ value) => value.toFixed(1);
-
   return (
     // .percent as wrapper > .dot + svg>circle*2 + .number
     <div
@@ -45,7 +43,7 @@ function CircleRate({ value, size = 'small' }) {
       <div
         className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${textNumberSize} font-bold tracking-wider text-skin-contrast`}
       >
-        {formatRate(value)}
+        {value?.toFixed(1)}
       </div>
     </div>
   );

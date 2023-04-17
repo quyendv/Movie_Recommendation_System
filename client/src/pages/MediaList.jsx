@@ -1,17 +1,42 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import mediaApi from '~/apis/media.api';
 import HeroSection from '~/components/common/HeroSection';
 import MediaGrid from '~/components/common/MediaGrid';
 
 function MediaList() {
   const { mediaType } = useParams();
-  const [currentCategory, setCurrentCategory] = useState(0);
+  const [medias, setMedias] = useState([]);
+  const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const categories = ['popular', 'top rated'];
+  const categories = ['popular', 'top_rated'];
+
+  useEffect(() => {
+    const getMedias = async () => {
+      // TODO: load more + loading...
+      const { response, err } = await mediaApi.getList({
+        mediaType,
+        mediaCategory: categories[currentCategoryIndex],
+        page: currentPage,
+      });
+      console.log({ name: 'MediaList getMedias', response, err });
+
+      if (response) {
+        // @ts-ignore
+        if (currentPage === 1) setMedias([...response.results]);
+        // @ts-ignore
+        else setMedias((prev) => [...prev, ...response.results]);
+      }
+      // toast if err
+    };
+
+    getMedias();
+  }, [mediaType, currentCategoryIndex, currentPage]); // TODO: update deps
 
   const handleChangeCategory = (index) => {
-    if (index !== currentCategory) setCurrentCategory(index);
-    // handle LOGIC
+    if (index !== currentCategoryIndex) setCurrentCategoryIndex(index);
+    // TODO: handle LOGIC
   };
 
   return (
@@ -27,7 +52,7 @@ function MediaList() {
               <button
                 key={index}
                 className={`rounded px-5 py-2 font-medium uppercase ${
-                  currentCategory === index ? 'bg-skin-primary text-white' : 'text-skin-contrast'
+                  currentCategoryIndex === index ? 'bg-skin-primary text-white' : 'text-skin-contrast'
                 }`}
                 onClick={() => handleChangeCategory(index)}
               >
@@ -38,9 +63,15 @@ function MediaList() {
         </div>
 
         {/* MediaGrid */}
-        <MediaGrid medias={''} mediaTypes={''} />
+        <MediaGrid medias={medias} mediaType={mediaType} />
 
         {/* Loading More //TODO */}
+        <button
+          className="w-full py-2 font-bold uppercase text-skin-primary"
+          onClick={() => setCurrentPage(currentPage + 1)}
+        >
+          Load more
+        </button>
       </div>
     </>
   );

@@ -8,7 +8,7 @@ const routesGeneration = {
 
 const routesConfigs = {
   home: '/',
-  movie: '/movies',
+  movie: '/movie', // exact movie (tv) or movies (tvs) to useParam() in page
   tv: '/tv',
   mediaList: '/:mediaType',
   mediaDetail: '/:mediaType/:mediaId',
