@@ -3,16 +3,29 @@ import { useParams } from 'react-router-dom';
 import mediaApi from '~/apis/media.api';
 import HeroSection from '~/components/common/HeroSection';
 import MediaGrid from '~/components/common/MediaGrid';
+import usePrevious from '~/hooks/usePrevious';
 
 function MediaList() {
   const { mediaType } = useParams();
+  // @ts-ignore
+  const prevMediaType = usePrevious(mediaType); // for change navigation (movie <-> tv)
+
   const [medias, setMedias] = useState([]);
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const categories = ['popular', 'top_rated'];
+  const categories = ['popular', 'top_rated']; // TODO: useMemo return array
 
+  console.log({
+    mediaType,
+    prevMediaType,
+    currentPage,
+    currentCategoryIndex,
+  });
+
+  // TODO: handle scrollToTop when change mediaType
   useEffect(() => {
+    // Get API fn
     const getMedias = async () => {
       // TODO: load more + loading...
       const { response, err } = await mediaApi.getList({
@@ -31,17 +44,29 @@ function MediaList() {
       // toast if err
     };
 
+    // if change navigation: reset page, category
+    if (mediaType !== prevMediaType) {
+      console.log('go here');
+      setCurrentCategoryIndex(0);
+      setCurrentPage(1);
+    }
+
+    // Call api
     getMedias();
-  }, [mediaType, currentCategoryIndex, currentPage]); // TODO: update deps
+  }, [mediaType, prevMediaType, currentCategoryIndex, currentPage]); // TODO: update deps
 
   const handleChangeCategory = (index) => {
-    if (index !== currentCategoryIndex) setCurrentCategoryIndex(index);
-    // TODO: handle LOGIC
+    if (index !== currentCategoryIndex) {
+      setCurrentCategoryIndex(index);
+      // handle LOGIC: resetPage, medias
+      setCurrentPage(1);
+      setMedias([]);
+    }
   };
 
   return (
     <>
-      <HeroSection />
+      <HeroSection mediaType={mediaType} mediaCategory={categories[currentCategoryIndex]} />
 
       <div className="main-section">
         {/* Title & Categories */}
@@ -56,7 +81,7 @@ function MediaList() {
                 }`}
                 onClick={() => handleChangeCategory(index)}
               >
-                {category}
+                {category === 'popular' ? 'popular' : 'top rated'} {/* change top_rated to top rated */}
               </button>
             ))}
           </div>
@@ -66,12 +91,11 @@ function MediaList() {
         <MediaGrid medias={medias} mediaType={mediaType} />
 
         {/* Loading More //TODO */}
-        <button
-          className="w-full py-2 font-bold uppercase text-skin-primary"
-          onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          Load more
-        </button>
+        <div className="mt-8 text-center">
+          <button className="load-more" onClick={() => setCurrentPage(currentPage + 1)}>
+            Load more
+          </button>
+        </div>
       </div>
     </>
   );

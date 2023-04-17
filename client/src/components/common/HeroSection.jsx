@@ -62,7 +62,7 @@ const HeroItem = ({ media, mediaType, genres }) => {
   );
 };
 
-function HeroSection({ mediaType = 'movie', mediaCategory = 'popular' }) {
+function HeroSection({ mediaType, mediaCategory }) {
   const [medias, setMedias] = useState([]);
   const [genres, setGenres] = useState([]);
 
@@ -100,11 +100,11 @@ function HeroSection({ mediaType = 'movie', mediaCategory = 'popular' }) {
         modules={[Autoplay]}
         slidesPerView={1}
         grabCursor
-        // autoplay={{
-        //   delay: 1000,
-        //   disableOnInteraction: false,
-        //   pauseOnMouseEnter: true,
-        // }}
+        autoplay={{
+          delay: 1000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
         speed={800}
         loop
       >

@@ -146,4 +146,12 @@ textarea,
     @apply relative bg-backdropPoster bg-cover bg-top bg-no-repeat;
     // bg-[url('/src/assets/images/hero-poster.jpg')]
   }
+
+  // Load More Button
+  .load-more {
+    @apply relative z-10 overflow-hidden border border-solid border-skin-primary bg-transparent px-5 py-2 font-semibold uppercase text-skin-primary transition-all duration-500 hover:text-white hover:before:h-[300%];
+    &::before {
+      @apply absolute left-1/2 top-1/2 z-[-1] h-0 w-full -translate-x-1/2 -translate-y-1/2 rotate-45 bg-skin-primary transition-all duration-300 ease-[cubic-bezier(0.24,0.89,0.68,-0.37)] content-[''];
+    }
+  }
 }
