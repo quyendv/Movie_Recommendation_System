@@ -86,7 +86,7 @@ function Header() {
 
       {/* Theme switcher */}
       <button
-        className="rounded-full p-3 text-lg text-skin-contrast hover:bg-skin-navHover"
+        className="ml-4 rounded-full p-3 text-lg text-skin-contrast hover:bg-skin-navHover"
         onClick={handleSwitchTheme}
       >
         {theme === themeModes.light && <BsFillSunFill size={20} />}

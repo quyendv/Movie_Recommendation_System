@@ -28,7 +28,7 @@ function HomePage() {
 
         {/* Rated tv series */}
         <SectionWrapper title="Rated Series">
-          <MediaSection mediaType={tmdbConfigs.mediaType.movie} mediaCategory={tmdbConfigs.mediaCategory.top_rated} />
+          <MediaSection mediaType={tmdbConfigs.mediaType.tv} mediaCategory={tmdbConfigs.mediaCategory.top_rated} />
         </SectionWrapper>
       </div>
     </div>

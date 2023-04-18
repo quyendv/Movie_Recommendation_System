@@ -43,7 +43,7 @@ function CircleRate({ value, size = 'small' }) {
       <div
         className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${textNumberSize} font-bold tracking-wider text-skin-contrast`}
       >
-        {value?.toFixed(1)}
+        {value?.toPrecision(2)} {/* or toFixed(1) */}
       </div>
     </div>
   );

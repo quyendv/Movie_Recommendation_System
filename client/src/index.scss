@@ -142,9 +142,8 @@ textarea,
 
   // Background-Image for backdrop/poster
   .backdrop-poster {
-    --backdrop-poster: url('/src/assets/images/hero-poster.jpg'); // default
-    @apply relative bg-backdropPoster bg-cover bg-top bg-no-repeat;
-    // bg-[url('/src/assets/images/hero-poster.jpg')]
+    --backdrop-poster: url('/src/assets/images/hero-poster.jpg'); // default if don't pass url to style, can set error url instead of an correct image
+    @apply relative bg-gray-400 bg-backdropPoster bg-cover bg-top bg-no-repeat; // need other bg-image (gray-400) if url passed is wrong
   }
 
   // Load More Button
