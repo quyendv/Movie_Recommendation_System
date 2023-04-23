@@ -23,7 +23,7 @@ function MediaSection({ mediaType = 'movie', mediaCategory = 'popular' }) {
       {medias?.map((media, index) => (
         // MediaItemBox: keep SwiperSlide
         <SwiperSlide key={index}>
-          <MediaItem media={media} mediaType={mediaType} isFavorite />
+          <MediaItem media={media} mediaType={mediaType} />
         </SwiperSlide>
       ))}
     </AutoSwiper>

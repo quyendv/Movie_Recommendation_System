@@ -1,20 +1,24 @@
-import { useEffect, useState } from 'react';
+// @ts-nocheck
+import { useEffect, useMemo, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import mediaApi from '~/apis/media.api';
 import HeroSection from '~/components/common/HeroSection';
 import MediaGrid from '~/components/common/MediaGrid';
 import usePrevious from '~/hooks/usePrevious';
+import { setGlobalLoading } from '~/redux/features/globalSlice';
 
 function MediaList() {
   const { mediaType } = useParams();
   // @ts-ignore
   const prevMediaType = usePrevious(mediaType); // for change navigation (movie <-> tv)
+  const dispatch = useDispatch();
 
   const [medias, setMedias] = useState([]);
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const categories = ['popular', 'top_rated']; // TODO: useMemo return array
+  const categories = useMemo(() => ['popular', 'top_rated'], []); // TODO: useMemo return array
 
   console.log({
     mediaType,
@@ -25,20 +29,24 @@ function MediaList() {
 
   // TODO: handle scrollToTop when change mediaType
   useEffect(() => {
-    // Get API fn
+    window.scrollTo(0, 0);
+  }, [mediaType]);
+
+  useEffect(() => {
     const getMedias = async () => {
-      // TODO: load more + loading...
+      // TODO: Loading if only page = 1
+      if (currentPage === 1) dispatch(setGlobalLoading(true));
       const { response, err } = await mediaApi.getList({
         mediaType,
         mediaCategory: categories[currentCategoryIndex],
         page: currentPage,
       });
+      dispatch(setGlobalLoading(false));
+
       console.log({ name: 'MediaList getMedias', response, err });
 
       if (response) {
-        // @ts-ignore
         if (currentPage === 1) setMedias([...response.results]);
-        // @ts-ignore
         else setMedias((prev) => [...prev, ...response.results]);
       }
       // toast if err
@@ -52,7 +60,7 @@ function MediaList() {
 
     // Call api
     getMedias();
-  }, [mediaType, prevMediaType, currentCategoryIndex, currentPage]); // TODO: update deps
+  }, [mediaType, prevMediaType, currentCategoryIndex, currentPage, dispatch]); // TODO: update deps
 
   const handleChangeCategory = (index) => {
     if (index !== currentCategoryIndex) {

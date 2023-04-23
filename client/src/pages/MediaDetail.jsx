@@ -2,28 +2,36 @@
 import { useEffect, useState } from 'react';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import mediaApi from '~/apis/media.api';
 import BackdropSection from '~/components/common/BackdropSection';
 import CastSection from '~/components/common/CastSection';
 import CircleRate from '~/components/common/CircleRate';
 import ImageHeader from '~/components/common/ImageHeader';
-import MediaSection from '~/components/common/MediaSection';
 import PosterSection from '~/components/common/PosterSection';
+import Recommendation from '~/components/common/Recommendation';
 import SectionWrapper from '~/components/common/SectionWrapper';
 import VideoSection from '~/components/common/VideoSection';
 import tmdbConfigs from '~/configs/tmdb.configs';
+import { setGlobalLoading } from '~/redux/features/globalSlice';
 
 function MediaDetail() {
   const { mediaType, mediaId } = useParams();
   const [media, setMedia] = useState({});
-  const [isFavorite, setIsFavorite] = useState(true);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    // TODO: scroll to top-left screen when reload
+    window.scrollTo(0, 0);
+
     const getMedia = async () => {
-      // TODO: loading on
+      dispatch(setGlobalLoading(true));
       const { response, err } = await mediaApi.getDetail({ mediaType, mediaId });
-      // TODO: loading off
+      dispatch(setGlobalLoading(false));
+
       console.log({ name: 'getMediaDetail', response, err });
       if (response) {
         // TODO: custom response by BE for favorite, credits, videos, recommend, images, reviews, etc... -> convert custom mediaApi in ~/apis/media.api.js
@@ -32,11 +40,10 @@ function MediaDetail() {
       // TODO: if err -> toast
     };
     getMedia();
-  }, [mediaType, mediaId]); // TODO: dispatch
+  }, [mediaType, mediaId, dispatch]); // TODO: dispatch
 
   return (
-    // TODO: check media
-    media ? (
+    media && (
       <>
         {/* Image Header: Sunken Image */}
         <ImageHeader imgPath={tmdbConfigs.backdropPath(media?.backdrop_path || media?.poster_path)} />
@@ -129,13 +136,13 @@ function MediaDetail() {
           {/* Review */}
 
           {/* Recommendation: // TODO */}
-          {/* <SectionWrapper title="Recommendations">
-            <MediaSection></MediaSection>
-          </SectionWrapper> */}
+          <SectionWrapper title="Recommendations">
+            <Recommendation recommendations={media?.recommendations?.results} mediaType={mediaType} />
+          </SectionWrapper>
           {/* Recommendation */}
         </div>
       </>
-    ) : null
+    )
   );
 }
 

@@ -1,19 +1,18 @@
 import { useEffect, useState } from 'react';
 import { ImSpinner10 } from 'react-icons/im';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Header from './Header';
 
 function GlobalLoading() {
   // @ts-ignore
   const { globalLoading } = useSelector((state) => state.global);
   const [isLoading, setIsLoading] = useState(false);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (globalLoading) {
       setIsLoading(true);
     } else {
-      // loading 1s
+      // localLoading load additionally 1s after globalLoading off -> handle request API so fast
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
@@ -27,9 +26,9 @@ function GlobalLoading() {
       }`}
     >
       <Header />
- 
-      {/* MainContent/MainPage */}
-      <div className="h-full w-full pt-header">
+
+      {/* MainContent/MainPage -> pt- lessThanOrEqual header */}
+      <div className="h-full w-full pt-[60px]">
         {/* LinearProgressBar */}
         <progress className="linear-progress" />
 

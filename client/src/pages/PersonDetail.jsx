@@ -1,19 +1,25 @@
 // @ts-nocheck
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import personApi from '~/apis/person.api';
 import PersonMediaGrid from '~/components/common/PersonMediaGrid';
 import SectionWrapper from '~/components/common/SectionWrapper';
 import tmdbConfigs from '~/configs/tmdb.configs';
+import { setGlobalLoading } from '~/redux/features/globalSlice';
 
 function PersonDetail() {
   const { personId } = useParams();
   const [person, setPerson] = useState();
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const getPerson = async () => {
-      // TODO loading
+      dispatch(setGlobalLoading(true));
       const { response, err } = await personApi.getDetail({ personId });
+      dispatch(setGlobalLoading(false));
+
       console.log({ name: 'PersonDetail getPerson', response, err });
 
       // toast if err
@@ -43,7 +49,6 @@ function PersonDetail() {
             <div className="w-1/2 lg:w-1/5">
               <div
                 style={{
-                  // @ts-ignore
                   '--backdrop-poster': `url(${tmdbConfigs.posterPath(person?.profile_path)})`,
                 }}
                 className="backdrop-poster pt-[160%]"

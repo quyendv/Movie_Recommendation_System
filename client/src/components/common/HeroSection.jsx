@@ -6,12 +6,14 @@ import 'swiper/css/scrollbar';
 
 import { useEffect, useState } from 'react';
 import { AiFillPlayCircle } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import mediaApi from '~/apis/media.api';
 import { routesGeneration } from '~/configs/routes.configs';
 import tmdbConfigs from '~/configs/tmdb.configs';
+import { setGlobalLoading } from '~/redux/features/globalSlice';
 import CircleRate from './CircleRate';
 
 const HeroItem = ({ media, mediaType, genres }) => {
@@ -66,6 +68,8 @@ function HeroSection({ mediaType, mediaCategory }) {
   const [medias, setMedias] = useState([]);
   const [genres, setGenres] = useState([]);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const getMedias = async () => {
       const { response, err } = await mediaApi.getList({
@@ -79,18 +83,20 @@ function HeroSection({ mediaType, mediaCategory }) {
     };
 
     const getGenres = async () => {
-      // TODO: loading
+      // TODO: update position of calling globalLoading so that it doesn't obscure toastify
+      dispatch(setGlobalLoading(true));
       const { response, err } = await mediaApi.getGenres({ mediaType });
       if (response) {
         setGenres(response.genres);
         getMedias();
       }
       // TODO: if err
+      dispatch(setGlobalLoading(false));
       console.log({ name: 'HeroSection getGenres', response, err });
     };
 
     getGenres();
-  }, [mediaType, mediaCategory]); // TODO: dispatch
+  }, [mediaType, mediaCategory, dispatch]); // TODO: dispatch
 
   return (
     // Wrapper: gradient at bottom to 30%,
