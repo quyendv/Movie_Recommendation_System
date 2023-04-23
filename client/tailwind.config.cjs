@@ -24,12 +24,14 @@ module.exports = {
         skin: {
           default: 'var(--background-default)',
           paper: 'var(--background-paper)',
+          sidebarMenu: 'var(--bg-sidebar-menu)',
         },
       },
       backgroundImage: {
         // skin not work (other key (not 'skin') also doesn't work) -> use directly
         overlayToTop: 'var(--overlay-to-top)',
         overlayToRight: 'var(--overlay-to-right)',
+        overlayToLeft: 'var(--overlay-to-left)',
         linearProgress: 'var(--lp-bg-image)',
         backdropPoster: 'var(--backdrop-poster)',
       },

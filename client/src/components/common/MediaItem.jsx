@@ -65,7 +65,7 @@ function MediaItem({ media, mediaType, isFavorite = false }) {
             </div>
 
             {/* Media Info */}
-            <div className="absolute bottom-0 flex w-full flex-col gap-2 p-2.5 text-skin-contrast opacity-100 transition duration-300 group-hover:opacity-100 lg:-bottom-5 lg:gap-4 lg:p-[2rem_1rem] lg:opacity-0">
+            <div className="absolute bottom-0 flex w-full flex-col gap-2 p-2.5 text-skin-contrast opacity-100 transition-all duration-500 group-hover:opacity-100 group-hover:bottom-0 lg:-bottom-5 lg:gap-4 lg:p-[2rem_1rem] lg:opacity-0">
               {/* Rate  */}
               <CircleRate value={media.vote_average} />
               {/* Release Date: //TODO */}

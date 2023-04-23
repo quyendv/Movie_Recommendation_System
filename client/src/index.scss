@@ -12,7 +12,9 @@
     --background-paper: #ffffff; // for header, footer, ...
     --overlay-to-top: linear-gradient(to top, rgba(245, 245, 245, 1), rgba(0, 0, 0, 0));
     --overlay-to-right: linear-gradient(to right, rgba(245, 245, 245, 1), rgba(0, 0, 0, 0));
+    --overlay-to-left: linear-gradient(to left, rgba(245, 245, 245, 0.7), rgba(0, 0, 0, 0)); // for mobile menu
     --nav-hover: #0000001a;
+    --bg-sidebar-menu: #fff;
     // Circle Rate Progress
     --crp-circle1-color: #19191926;
     --crp-color: #04fc43;
@@ -37,7 +39,9 @@
     --background-paper: #131313;
     --overlay-to-top: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     --overlay-to-right: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    --overlay-to-left: linear-gradient(to left, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); // for mobile menu
     --nav-hover: #ffffff1a;
+    --bg-sidebar-menu: #35363a;
     // Circle Rate Progress
     --crp-circle1-color: #191919;
     --crp-color: #04fc43;
@@ -151,6 +155,24 @@ textarea,
     @apply relative z-10 overflow-hidden border border-solid border-skin-primary bg-transparent px-5 py-2 font-semibold uppercase text-skin-primary transition-all duration-500 hover:text-white hover:before:h-[300%];
     &::before {
       @apply absolute left-1/2 top-1/2 z-[-1] h-0 w-full -translate-x-1/2 -translate-y-1/2 rotate-45 bg-skin-primary transition-all duration-300 ease-[cubic-bezier(0.24,0.89,0.68,-0.37)] content-[''];
+    }
+  }
+
+  // Mobile Menu
+  .mobile-menu {
+    @apply absolute left-full top-0 h-screen w-[40vw] min-w-[250px] bg-black/50 transition-all duration-300 [&.active]:-translate-x-full;
+    .hamburger {
+      @apply absolute right-full top-3 flex h-[40px] w-[40px] cursor-pointer flex-col items-center justify-center md:hidden;
+      .hamburger-line {
+        // 3 & 4 in center (absolute to seam one element), 1 & 2 translate-y +- 8px => Delay from active to non-active 1 & 4 delay = 3 & 4 duration
+        @apply absolute h-[3px] w-[25px] rounded bg-skin-contrast transition-all duration-200 first:-translate-y-2 last:translate-y-2 [&:nth-child(1)]:delay-200 [&:nth-child(4)]:delay-200; // must absolute to same one element in flexbox (overlay each other) -> instead of one hamburger-line + ::before & ::after
+      }
+      &.active {
+        .hamburger-line {
+          // 1 & 4 is to center and opacity-0, 2 & 3 (still in center) rotate +- 45 => Delay from non-active to active 2 & 3 delay = duration 1 & 4 and 1 & 4 delay = 0
+          @apply transition-all duration-200 first:translate-y-0 first:opacity-0 last:translate-y-0 last:opacity-0 [&:nth-child(1)]:delay-0 [&:nth-child(2)]:rotate-45 [&:nth-child(2)]:delay-200 [&:nth-child(3)]:-rotate-45 [&:nth-child(3)]:delay-200 [&:nth-child(4)]:delay-0;
+        }
+      }
     }
   }
 }

@@ -22,12 +22,12 @@ function GlobalLoading() {
 
   return (
     <div
-      className={`pointer-events-none fixed z-50 h-screen w-screen bg-transparent ${
+      className={`pointer-events-none fixed h-screen w-screen bg-transparent ${
         isLoading ? 'visible [&+*]:invisible' : 'invisible [&+*]:visible'
       }`}
     >
       <Header />
-
+ 
       {/* MainContent/MainPage */}
       <div className="h-full w-full pt-header">
         {/* LinearProgressBar */}
