@@ -1,4 +1,5 @@
 // @ts-nocheck
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
@@ -42,11 +43,29 @@ function MediaDetail() {
     getMedia();
   }, [mediaType, mediaId, dispatch]); // TODO: dispatch
 
+  const handleSendRequest = () => {
+    const sendRequest = async () => {
+      const res = await axios.post(
+        'http://localhost:5000/api/media',
+        media,
+        // {
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        // },
+      );
+      console.log(res);
+    };
+    sendRequest();
+  };
+
   return (
     media && (
       <>
         {/* Image Header: Sunken Image */}
         <ImageHeader imgPath={tmdbConfigs.backdropPath(media?.backdrop_path || media?.poster_path)} />
+
+        <button className='text-white' onClick={handleSendRequest}>Button</button>
 
         {/* Wrapper (higher ImageHeader: zIndex) > Content + Videos + Backdrop + Posters + Review(cmt) + Recommendation  */}
         <div className="container relative z-10 mx-auto p-4 text-skin-contrast sm:p-8">
