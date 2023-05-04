@@ -1,4 +1,5 @@
 // @ts-nocheck
+import axios from 'axios';
 import { axiosPublicInstance } from '~/configs/axios';
 import tmdbConfigs from '~/configs/tmdb.configs';
 
@@ -43,6 +44,27 @@ const mediaApi = {
         response.images = images;
         response.recommendations = recommendations;
       }
+
+      return { response };
+    } catch (err) {
+      return { err };
+    }
+  },
+
+  // TODO: Temporary RS api for only movie
+  getFlaskMovieRs: async ({ mediaType = 'movie', data }) => {
+    try {
+      // Get Indexes of list flaskMovieRs (Only Movie)
+      const { data: rsIndexes } = await axios.post('http://localhost:5000/api/media/rs-movie', data); // TODO: not axios instance -> response is object include .data -> destructuring with rename
+      console.log('rsIndexes :>> ', rsIndexes);
+
+      // Get data of all movies with each index
+      const response = [];
+      for (const rsIndex of rsIndexes) {
+        const detailItem = await axiosPublicInstance.get(mediaEndpoints.detail({ mediaType, mediaId: rsIndex }));
+        if (detailItem) response.push(detailItem);
+      }
+
       return { response };
     } catch (err) {
       return { err };

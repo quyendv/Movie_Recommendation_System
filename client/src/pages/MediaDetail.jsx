@@ -1,5 +1,4 @@
 // @ts-nocheck
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
@@ -25,7 +24,7 @@ function MediaDetail() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // TODO: scroll to top-left screen when reload
+    // Scroll to top-left screen when reload
     window.scrollTo(0, 0);
 
     const getMedia = async () => {
@@ -33,9 +32,9 @@ function MediaDetail() {
       const { response, err } = await mediaApi.getDetail({ mediaType, mediaId });
       dispatch(setGlobalLoading(false));
 
-      console.log({ name: 'getMediaDetail', response, err });
+      console.log({ name: 'MediaDetail getMedia', response, err });
       if (response) {
-        // TODO: custom response by BE for favorite, credits, videos, recommend, images, reviews, etc... -> convert custom mediaApi in ~/apis/media.api.js
+        // Custom response by BE for detail, favorite, credits, videos, recommend, images, reviews, etc... -> convert custom mediaApi in ~/apis/media.api.js
         setMedia(response);
       }
       // TODO: if err -> toast
@@ -43,29 +42,11 @@ function MediaDetail() {
     getMedia();
   }, [mediaType, mediaId, dispatch]); // TODO: dispatch
 
-  const handleSendRequest = () => {
-    const sendRequest = async () => {
-      const res = await axios.post(
-        'http://localhost:5000/api/media',
-        media,
-        // {
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        // },
-      );
-      console.log(res);
-    };
-    sendRequest();
-  };
-
   return (
     media && (
       <>
         {/* Image Header: Sunken Image */}
         <ImageHeader imgPath={tmdbConfigs.backdropPath(media?.backdrop_path || media?.poster_path)} />
-
-        <button className='text-white' onClick={handleSendRequest}>Button</button>
 
         {/* Wrapper (higher ImageHeader: zIndex) > Content + Videos + Backdrop + Posters + Review(cmt) + Recommendation  */}
         <div className="container relative z-10 mx-auto p-4 text-skin-contrast sm:p-8">
@@ -156,7 +137,7 @@ function MediaDetail() {
 
           {/* Recommendation: // TODO */}
           <SectionWrapper title="Recommendations">
-            <Recommendation recommendations={media?.recommendations?.results} mediaType={mediaType} />
+            <Recommendation media={media} mediaType={mediaType} />
           </SectionWrapper>
           {/* Recommendation */}
         </div>
