@@ -51,25 +51,42 @@ const mediaApi = {
     }
   },
 
-  // TODO: Temporary RS api for only movie
-  getFlaskMovieRs: async ({ mediaType = 'movie', data }) => {
-    try {
-      // Get Indexes of list flaskMovieRs (Only Movie)
-      const { data: rsIndexes } = await axios.post('http://localhost:5000/api/media/rs-movie', data); // TODO: not axios instance -> response is object include .data -> destructuring with rename
-      console.log('rsIndexes :>> ', rsIndexes);
+  // // TODO: Temporary RS api for only movie
+  // getFlaskMovieRs: async ({ mediaType = 'movie', data }) => {
+  //   try {
+  //     // Get Indexes of list flaskMovieRs (Only Movie)
+  //     const { data: rsIndexes } = await axios.post('http://localhost:5000/api/media/rs-movie', data); // TODO: not axios instance -> response is object include .data -> destructuring with rename
+  //     console.log('rsIndexes :>> ', rsIndexes);
 
-      // Get data of all movies with each index
-      const response = [];
-      for (const rsIndex of rsIndexes) {
-        const detailItem = await axiosPublicInstance.get(mediaEndpoints.detail({ mediaType, mediaId: rsIndex }));
-        if (detailItem) response.push(detailItem);
-      }
+  //     // Get data of all movies with each index
+  //     /**
+  //      * !IMPORTANT: using for instead of using forEach, map, reduce, ...
+  //      * - Khi sử dụng forEach để lặp qua các phần tử trong một mảng, mỗi lần lặp sẽ tạo ra một hàm callback bất đồng bộ.
+  //      *  + Trong trường hợp này, forEach sẽ gọi hàm callback bất đồng bộ đó cho mỗi phần tử trong mảng rsIndexes. Khi đó, vòng lặp sẽ không đợi cho tất cả các hàm callback bất đồng bộ hoàn thành trước khi tiếp tục đến các phần tử tiếp theo trong mảng.
+  //      *  + Do đó, việc thêm phần tử vào mảng response bên trong hàm callback bất đồng bộ không đảm bảo rằng tất cả các phần tử sẽ được thêm vào trước khi mảng response được truyền đi. Khi kết quả được in ra, mảng response có thể không chứa tất cả các phần tử mà bạn mong đợi, và độ dài của nó sẽ là 0.
+  //      * - Trong khi đó, nếu bạn sử dụng vòng lặp for, việc xử lý các phần tử trong mảng rsIndexes sẽ được thực hiện đồng bộ, mỗi phần tử sẽ được xử lý theo thứ tự.
+  //      *  + Việc sử dụng await cùng với for sẽ đảm bảo rằng các phần tử được xử lý bất đồng bộ, nhưng vẫn theo đúng thứ tự.
+  //      *  + Ngoài cách khắc phục dùng for, ta có thể dùng thêm Promise.all
+  //      *      const response = await Promise.all(rsIndexes.map(async (rsIndex) => {
+  //      *        const detailItem = await axiosPublicInstance.get(mediaEndpoints.detail({ mediaType, mediaId: rsIndex }));
+  //      *        return detailItem;
+  //      *      }));
+  //      *    hoặc
+  //      *      const promises = rsIndexes.map(rsIndex => axiosPublicInstance.get(mediaEndpoints.detail({ mediaType, mediaId: rsIndex })));
+  //      *      const response = await Promise.all(promises);
+  //      *    Trong đó: 'Promise.all' để đợi tất cả các hàm callback bất đồng bộ trong map hoàn thành.
+  //      */
+  //     const response = [];
+  //     for (const rsIndex of rsIndexes) {
+  //       const detailItem = await axiosPublicInstance.get(mediaEndpoints.detail({ mediaType, mediaId: rsIndex }));
+  //       if (detailItem) response.push(detailItem);
+  //     }
 
-      return { response };
-    } catch (err) {
-      return { err };
-    }
-  },
+  //     return { response };
+  //   } catch (err) {
+  //     return { err };
+  //   }
+  // },
 
   search: async ({ mediaType, query, page }) => {
     try {

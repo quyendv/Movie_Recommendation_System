@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
@@ -20,12 +20,13 @@ function MediaDetail() {
   const { mediaType, mediaId } = useParams();
   const [media, setMedia] = useState({});
   const [isFavorite, setIsFavorite] = useState(false);
+  const videoRef = useRef();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     // Scroll to top-left screen when reload
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 
     const getMedia = async () => {
       dispatch(setGlobalLoading(true));
@@ -95,7 +96,10 @@ function MediaDetail() {
                       {isFavorite ? <MdFavorite size={24} /> : <MdFavoriteBorder size={24} />}
                     </div>
                     {/* //TODO onclick: ScrollIntoView Video */}
-                    <button className="flex items-center gap-1 rounded bg-skin-primary px-2 py-2">
+                    <button
+                      className="flex items-center gap-1 rounded bg-skin-primary px-2 py-2"
+                      onClick={() => videoRef.current.scrollIntoView()}
+                    >
                       <AiFillPlayCircle size={24} />
                       <span className="font-bold uppercase">Watch Now</span>
                     </button>
@@ -111,23 +115,25 @@ function MediaDetail() {
           </div>
           {/* Content */}
 
-          {/* Videos */}
-          <SectionWrapper className="pt-8" title="Videos">
-            {/* // TODO: only max 5 videos */}
-            <VideoSection videos={media?.videos?.results?.slice(0, 5)} />
-          </SectionWrapper>
+          {/* Videos: //TODO ref to scrollIntoView */}
+          <div ref={videoRef}>
+            <SectionWrapper className="pt-8" title="Videos">
+              {/* only max 5 videos */}
+              <VideoSection videos={media?.videos?.results?.slice(0, 5)} />
+            </SectionWrapper>
+          </div>
           {/* Videos */}
 
           {/* Backdrop: // TODO: combine BackdropSection vs PosterSection */}
           <SectionWrapper title="Backdrops">
-            {/* // TODO: max 10 images */}
+            {/* max 10 images */}
             <BackdropSection backdrops={media?.images?.backdrops?.slice(0, 10)} />
           </SectionWrapper>
           {/* Backdrop */}
 
           {/* Posters */}
           <SectionWrapper title={'Posters'}>
-            {/* TODO: max 10  */}
+            {/* max 10 images */}
             <PosterSection posters={media?.images?.posters?.slice(0, 10)} />
           </SectionWrapper>
           {/* Posters */}
@@ -135,9 +141,10 @@ function MediaDetail() {
           {/* Review: //TODO */}
           {/* Review */}
 
-          {/* Recommendation: // TODO */}
+          {/* Recommendation: */}
           <SectionWrapper title="Recommendations">
-            <Recommendation media={media} mediaType={mediaType} />
+            {/* <Recommendation mediaDetail={media} mediaType={mediaType} mediaId={mediaId} /> */}
+            <Recommendation rsMedias={media?.recommendations?.results} mediaType={mediaType} />
           </SectionWrapper>
           {/* Recommendation */}
         </div>
