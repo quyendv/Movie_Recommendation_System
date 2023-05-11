@@ -1,1 +1,12 @@
 GET http://localhost:5000
+
+###
+POST http://localhost:5000/api/v1/user/signup
+Content-Type: application/json
+
+{
+  "username": "abc1",
+  "password": "123456",
+  "confirmPassword": "123456",
+  "displayName": "quyendv"
+}

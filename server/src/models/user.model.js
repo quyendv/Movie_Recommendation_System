@@ -1,5 +1,5 @@
-import { Schema } from 'mongoose';
-import modelOptions from './options';
+import mongoose, { Schema } from 'mongoose';
+import modelOptions from './options.js';
 
 const userSchema = new Schema(
   {
