@@ -36,15 +36,17 @@ const responseHandler = {
     });
   },
   // 200
-  ok: (res, data) =>
+  ok: (res, msg, data) =>
     responseWithData(res, 200, {
       success: true,
+      message: msg,
       data,
     }),
   // 201
-  created: (res, data) =>
+  created: (res, msg, data) =>
     responseWithData(res, 201, {
       success: true,
+      message: msg,
       data,
     }),
 };

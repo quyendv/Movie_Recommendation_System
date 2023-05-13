@@ -5,8 +5,17 @@ POST http://localhost:5000/api/v1/user/signup
 Content-Type: application/json
 
 {
-  "username": "abc1",
+  "username": "abc",
   "password": "123456",
   "confirmPassword": "123456",
   "displayName": "quyendv"
+}
+
+###
+POST http://localhost:5000/api/v1/user/signin
+Content-Type: application/json
+
+{
+  "username": "abc",
+  "password": "123456"
 }
