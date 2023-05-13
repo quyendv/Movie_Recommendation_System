@@ -1,5 +1,5 @@
 import { Schema, models } from 'mongoose';
-import modelOptions from './options';
+import modelOptions from './options.js';
 
 export default models(
   'Comment',

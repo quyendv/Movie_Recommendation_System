@@ -1,6 +1,8 @@
 import Joi from 'joi';
 
 /** Joi rules */
+
+// User
 export const username = Joi.string().required();
 export const password = Joi.string()
   .min(6)
@@ -13,3 +15,10 @@ export const password = Joi.string()
 // export const confirmPassword = Joi.any().valid(Joi.ref('password')).required(); // Không tạo joiRule ở đây được, phải tạo trực tiếp ở hàm Joi.object() -> Nếu dùng Joi.ref('password') sẽ không bắt lỗi required mà chỉ check match nếu nhập confirmPassword
 export const displayName = Joi.string().min(6).required();
 export const newPassword = Joi.string().min(6).required(); // same password
+
+// Favorite
+export const mediaType = Joi.string().valid('movie', 'tv').required(); // enum
+export const mediaId = Joi.number().required(); // Có thể dùng alternatives().try(Joi.string(), Joi.number()) để validate id là string | number, tuy nhiên joi.number() đã tự convert string sang number khi cần rồi
+export const mediaTitle = Joi.string().required();
+export const mediaPoster = Joi.string().required();
+export const mediaRate = Joi.number().required();

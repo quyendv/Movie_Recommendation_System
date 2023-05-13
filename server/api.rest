@@ -35,3 +35,25 @@ Authorization: Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWUyM2YyYzY
   "newPassword": "123123",
   "confirmPassword": "123123"
 }
+
+###
+GET http://localhost:5000/api/v1/user/favorites
+Authorization: Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWUyM2YyYzY4MDM0YzRmNDM1OGJkMSIsImlhdCI6MTY4Mzk2ODMxMiwiZXhwIjoxNjg0MDU0NzEyfQ.qaHcqHdY-tsZqkT6STOf6Fzqs7WJkwQo1MCT5qiRMY4
+
+###
+POST http://localhost:5000/api/v1/user/favorites
+Content-Type: application/json
+Authorization: Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWUyM2YyYzY4MDM0YzRmNDM1OGJkMSIsImlhdCI6MTY4Mzk2ODMxMiwiZXhwIjoxNjg0MDU0NzEyfQ.qaHcqHdY-tsZqkT6STOf6Fzqs7WJkwQo1MCT5qiRMY4
+
+{
+  "mediaType": "movie",
+  "mediaId": 123,
+  "mediaTitle": "Title movie",
+  "mediaPoster": "url poster",
+  "mediaRate": 7.8
+}
+
+###
+DELETE http://localhost:5000/api/v1/user/favorites/645ff96165ca61dd62c3d103
+Content-Type: application/json
+Authorization: Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWUyM2YyYzY4MDM0YzRmNDM1OGJkMSIsImlhdCI6MTY4Mzk2ODMxMiwiZXhwIjoxNjg0MDU0NzEyfQ.qaHcqHdY-tsZqkT6STOf6Fzqs7WJkwQo1MCT5qiRMY4
