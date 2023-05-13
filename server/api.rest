@@ -19,3 +19,19 @@ Content-Type: application/json
   "username": "abc",
   "password": "123456"
 }
+
+### 
+GET http://localhost:5000/api/v1/user/info
+Content-Type: application/json
+Authorization: Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWUyM2YyYzY4MDM0YzRmNDM1OGJkMSIsImlhdCI6MTY4Mzk2ODMxMiwiZXhwIjoxNjg0MDU0NzEyfQ.qaHcqHdY-tsZqkT6STOf6Fzqs7WJkwQo1MCT5qiRMY4
+
+###
+PUT http://localhost:5000/api/v1/user/update-password
+Content-Type: application/json
+Authorization: Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWUyM2YyYzY4MDM0YzRmNDM1OGJkMSIsImlhdCI6MTY4Mzk2ODMxMiwiZXhwIjoxNjg0MDU0NzEyfQ.qaHcqHdY-tsZqkT6STOf6Fzqs7WJkwQo1MCT5qiRMY4
+
+{
+  "password": "123456",
+  "newPassword": "123123",
+  "confirmPassword": "123123"
+}

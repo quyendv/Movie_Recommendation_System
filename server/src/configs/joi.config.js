@@ -12,3 +12,4 @@ export const password = Joi.string()
   .required(); // TODO: password BE nên check nhẹ nhàng nhường phần check rules nghiêm ngặt hơn ở FE
 // export const confirmPassword = Joi.any().valid(Joi.ref('password')).required(); // Không tạo joiRule ở đây được, phải tạo trực tiếp ở hàm Joi.object() -> Nếu dùng Joi.ref('password') sẽ không bắt lỗi required mà chỉ check match nếu nhập confirmPassword
 export const displayName = Joi.string().min(6).required();
+export const newPassword = Joi.string().min(6).required(); // same password

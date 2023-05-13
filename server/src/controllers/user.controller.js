@@ -78,3 +78,49 @@ export const signin = async (req, res) => {
     return responseHandler.internalServerError(res, err);
   }
 };
+
+// TODO: refreshToken
+
+export const getInfo = async (req, res) => {
+  try {
+    // const user = await UserModel.findOne({ _id: req.user.id }, '-password'); // must find by _id (not id) but result user include only id not _id (due to modelOptions), can use findById() method instead
+    const user = await UserModel.findOne({ _id: req.user.id }).select('-password -createdAt -updatedAt');
+
+    if (!user) return responseHandler.notFound(res, 'User not found');
+
+    return responseHandler.ok(res, 'Get user successfully', user);
+  } catch (err) {
+    return responseHandler.internalServerError(res, err);
+  }
+};
+
+export const updatePassword = async (req, res) => {
+  try {
+    /** Validate data input */
+    const { error } = Joi.object({
+      password: JoiRules.password,
+      newPassword: JoiRules.newPassword,
+      confirmPassword: Joi.any().valid(Joi.ref('newPassword')).required(),
+    }).validate(req.body);
+    if (error) return responseHandler.badRequest(res, error.details[0]?.message);
+
+    /** If valid data */
+    const { password, newPassword } = req.body;
+    const user = await UserModel.findOne({ _id: req.user.id });
+
+    if (!user) return responseHandler.notFound(res, 'User not found');
+
+    const validPasswd = await comparePassword(password, user.password);
+    if (!validPasswd) return responseHandler.badRequest(res, 'Password is incorrect');
+    console.log(user);
+
+    const hashNewPasswd = await hashPassword(newPassword);
+    // await UserModel.updateOne({ _id: req.user.id }, { password: hashNewPasswd });
+    user.password = hashNewPasswd;
+    user.save();
+
+    return responseHandler.created(res, 'Password updated successfully');
+  } catch (err) {
+    return responseHandler.internalServerError(res, err);
+  }
+};

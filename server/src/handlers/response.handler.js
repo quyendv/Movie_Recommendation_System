@@ -35,14 +35,14 @@ const responseHandler = {
       message: error.message,
     });
   },
-  // 200
+  // 200 - chỉ truyền res thì các arguments undefined còn lại sẽ tự không được gửi về mà không gây lỗi
   ok: (res, msg, data) =>
     responseWithData(res, 200, {
       success: true,
       message: msg,
       data,
     }),
-  // 201
+  // 201 - chỉ truyền res thì các arguments undefined còn lại sẽ tự không được gửi về mà không gây lỗi
   created: (res, msg, data) =>
     responseWithData(res, 201, {
       success: true,

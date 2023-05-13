@@ -1,6 +1,7 @@
-import jwt, { TokenExpiredError } from 'jsonwebtoken';
-import responseHandler from '../handlers/response.handler';
+import jwt from 'jsonwebtoken';
+import responseHandler from '../handlers/response.handler.js';
 
+const { TokenExpiredError } = jwt; // can't import jwt, { TokenExpiredError } from 'jsonwebtoken';
 /**
  * Chỉ dùng jwt sign thông tin cần thiết (id, email, role, ...) của user, sau đó ở middleware verifyToken này decode ra id rồi gọi api lấy thông tin user
  * -> jwt không phải để lấy data mà để xác minh
