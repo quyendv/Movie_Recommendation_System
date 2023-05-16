@@ -1,7 +1,9 @@
-import { Schema, models } from 'mongoose';
+import mongoose from 'mongoose';
 import modelOptions from './options.js';
 
-export default models(
+const { Schema, model } = mongoose;
+
+export default model(
   'Comment',
   new Schema(
     {

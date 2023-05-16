@@ -32,7 +32,8 @@ axiosPrivateInstance.interceptors.request.use(
     ...config,
     // @ts-ignore
     headers: {
-      'Content-Type': 'application/json',
+      // 'Content-Type': 'application/json',
+      'Content-Type': config.headers['Content-Type'] || 'application/json', // tránh overrides khi truyền Content-Type khác như multipart/form-data khi upload
       Authorization: `Bearer ${localStorage.getItem('access_token')}`,
     },
   }),
@@ -57,7 +58,8 @@ axiosPublicInstance.interceptors.request.use(
     ...config,
     // @ts-ignore
     headers: {
-      'Content-Type': 'application/json',
+      // 'Content-Type': 'application/json',
+      'Content-Type': config.headers['Content-Type'] || 'application/json', // tránh overrides khi truyền Content-Type khác như multipart/form-data khi upload
     },
   }),
   (error) => {
