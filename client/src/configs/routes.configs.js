@@ -10,13 +10,16 @@ const routesConfigs = {
   home: '/',
   movie: '/movie', // exact movie (tv) or movies (tvs) to useParam() in page
   tv: '/tv',
-  mediaList: '/:mediaType',
-  mediaDetail: '/:mediaType/:mediaId',
-  personDetail: '/person/:personId',
+  mediaList: '/:mediaType', // các route có params này sẽ gây lỗi conflict với page notFound (vì nó nhận route lỗi làm id)
+  mediaDetail: '/:mediaType/:mediaId', // các route có params này sẽ gây lỗi conflict với page notFound (vì nó nhận route lỗi làm id)
+  personDetail: '/person/:personId', // các route có params này sẽ gây lỗi conflict với page notFound (vì nó nhận route lỗi làm id)
   favorites: '/favorites',
+  comments: '/comments',
+  search: '/search',
   signin: '/signin',
   signup: '/signup',
-  search: '/search',
+  updatePassword: '/update-password',
+  notfound: '*',
 };
 
 export { routesConfigs, routesGeneration };

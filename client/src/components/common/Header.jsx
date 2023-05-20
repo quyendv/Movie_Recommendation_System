@@ -1,16 +1,19 @@
+// @ts-nocheck
 import { useCallback, useEffect, useState } from 'react';
 import { BsFillMoonStarsFill, BsFillSunFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { navMenu } from '~/configs/menu.config';
+import { routesConfigs } from '~/configs/routes.configs';
 import { themeModes } from '~/configs/theme.configs';
 import { setTheme } from '~/redux/features/themeSlice';
 import Logo from './Logo';
 import MobileMenu from './MobileMenu';
+import UserMenu from './UserMenu';
 
 function Header() {
-  // @ts-ignore
   const { theme } = useSelector((state) => state.theme);
+  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const [headerBg, setHeaderBg] = useState(theme === themeModes.dark ? 'bg-transparent' : 'bg-skin-paper');
@@ -28,7 +31,6 @@ function Header() {
 
   const handleUpdateBgColor = () => {
     const bg = window.scrollY <= 50 && theme === themeModes.dark ? 'bg-transparent' : 'bg-skin-paper';
-    // console.log(window.scrollY, bg, headerBg, bg !== headerBg, theme); // check
     setHeaderBg(bg); // setState auto only update & re-render if oldState !== newState
   };
 
@@ -40,7 +42,7 @@ function Header() {
   return (
     <>
       <header className={`fixed left-0 top-0 z-20 flex h-header w-full items-center px-6 ${headerBg}`}>
-        {/* Menu mobile: //TODO Hamburger */}
+        {/* Menu mobile */}
         <MobileMenu theme={theme} onSwitchTheme={handleSwitchTheme} />
 
         {/* Logo */}
@@ -71,7 +73,14 @@ function Header() {
           {theme === themeModes.dark && <BsFillMoonStarsFill />}
         </button>
 
-        {/* User menu //TODO Dropdown */}
+        {/* User menu //TODO: Dropdown */}
+        {user ? (
+          <UserMenu />
+        ) : (
+          <Link to={routesConfigs.signin} className="load-more ml-auto hidden font-bold before:rotate-90 md:block">
+            Signin
+          </Link>
+        )}
       </header>
     </>
   );

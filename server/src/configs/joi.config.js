@@ -3,7 +3,7 @@ import Joi from 'joi';
 /** Joi rules */
 
 // User
-export const username = Joi.string().required();
+export const username = Joi.string().min(6).required();
 export const password = Joi.string()
   .min(6)
   // .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$')) // chữ + số, [6, 30]

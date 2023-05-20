@@ -21,7 +21,6 @@ function App() {
               <Route key={index} path={route.path} element={<Layout>{route.element}</Layout>} />
             );
           })}
-          {/* // TODO: Page Not Found */}
         </Routes>
       </Router>
 

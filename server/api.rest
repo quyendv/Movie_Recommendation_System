@@ -22,7 +22,7 @@ Content-Type: application/json
 
 ### 
 GET http://localhost:5000/api/v1/user/info
-Authorization: Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWUyM2YyYzY4MDM0YzRmNDM1OGJkMSIsImlhdCI6MTY4Mzk2ODMxMiwiZXhwIjoxNjg0MDU0NzEyfQ.qaHcqHdY-tsZqkT6STOf6Fzqs7WJkwQo1MCT5qiRMY4
+Authorization: Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWUyM2YyYzY4MDM0YzRmNDM1OGJkMSIsImlhdCI6MTY4NDUxNjg5NSwiZXhwIjoxNjg0NjAzMjk1fQ.GHtqSy4wc71JdR95GWLODK9_CxFibRtAiv423anuaxY
 
 ###
 PUT http://localhost:5000/api/v1/user/update-password
@@ -63,7 +63,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWUyM2YyY
 
 ###
 GET http://localhost:5000/api/v1/comments/12345
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWUyM2YyYzY4MDM0YzRmNDM1OGJkMSIsImlhdCI6MTY4NDI0ODg5NCwiZXhwIjoxNjg0MzM1Mjk0fQ.sr8keYBaka0JSZ4ozJiDuKyfG1bq_xHdRShedBvFofo
 
 ###
 POST http://localhost:5000/api/v1/comments/

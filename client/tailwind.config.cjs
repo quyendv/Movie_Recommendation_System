@@ -19,6 +19,7 @@ module.exports = {
         },
         crpColor: 'var(--crp-color)',
         crpCircle1: 'var(--crp-circle1-color)',
+        form: '#22d3ee', // cyan-400
       },
       backgroundColor: {
         skin: {
@@ -34,6 +35,11 @@ module.exports = {
         overlayToLeft: 'var(--overlay-to-left)',
         linearProgress: 'var(--lp-bg-image)',
         backdropPoster: 'var(--backdrop-poster)',
+      },
+      fontFamily: {
+        berkshireSwash: ['Berkshire Swash', 'cursive '],
+        lobster: ['Lobster', 'cursive'],
+        roboto: ['Roboto', 'sans-serif']
       },
       animation: {
         dotCrp: 'animateDotCrp 1s linear forwards',

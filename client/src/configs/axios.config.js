@@ -1,3 +1,4 @@
+// @ts-nocheck
 import axios from 'axios';
 import queryString from 'query-string';
 import tmdbConfigs from './tmdb.configs';
@@ -8,10 +9,10 @@ import tmdbConfigs from './tmdb.configs';
 // queryString: &page=1
 // -> example: https://api.themoviedb.org/3/movie/popular?api_key=1508e28e83ed879187a9f8258204b25f&page=1 // or query api_key to end
 
-// TODO: add baseURL
-const baseURL = tmdbConfigs.baseURL;
+const baseURL =
+  process.env.NODE_ENV === 'development' ? 'http://localhost:5000/api/v1' : import.meta.data.env.VITE_SERVER_PRODUCT; // check 'development' | 'production'
 
-/** Instance: Public + Private */
+/** Instance: Public (To NodeJS no required token) + Private (NodeJS verifyToken) + TMDB (TMDB data) */
 const axiosPrivateInstance = axios.create({
   baseURL,
   paramsSerializer: {
@@ -26,19 +27,26 @@ const axiosPublicInstance = axios.create({
   },
 });
 
+const axiosTmdbInstance = axios.create({
+  baseURL: tmdbConfigs.baseURL,
+  paramsSerializer: {
+    encode: (params) => queryString.stringify(params),
+  },
+});
+
 /** Interceptors */
 axiosPrivateInstance.interceptors.request.use(
   (config) => ({
     ...config,
-    // @ts-ignore
     headers: {
       // 'Content-Type': 'application/json',
       'Content-Type': config.headers['Content-Type'] || 'application/json', // tránh overrides khi truyền Content-Type khác như multipart/form-data khi upload
-      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+      Authorization: `Bearer ${localStorage.getItem('acc_token')}`,
     },
   }),
   (error) => {
-    return Promise.reject(error);
+    // return Promise.reject(error);
+    throw error.response.data;
   },
 );
 
@@ -56,7 +64,6 @@ axiosPrivateInstance.interceptors.response.use(
 axiosPublicInstance.interceptors.request.use(
   (config) => ({
     ...config,
-    // @ts-ignore
     headers: {
       // 'Content-Type': 'application/json',
       'Content-Type': config.headers['Content-Type'] || 'application/json', // tránh overrides khi truyền Content-Type khác như multipart/form-data khi upload
@@ -79,4 +86,29 @@ axiosPublicInstance.interceptors.response.use(
   },
 );
 
-export { axiosPrivateInstance, axiosPublicInstance };
+axiosTmdbInstance.interceptors.request.use(
+  (config) => ({
+    ...config,
+    headers: {
+      // 'Content-Type': 'application/json',
+      'Content-Type': config.headers['Content-Type'] || 'application/json', // tránh overrides khi truyền Content-Type khác như multipart/form-data khi upload
+    },
+  }),
+  (error) => {
+    // return Promise.reject(error);
+    throw error.response.data;
+  },
+);
+
+axiosTmdbInstance.interceptors.response.use(
+  (response) => {
+    if (response && response.data) return response.data;
+    return response;
+  },
+  (error) => {
+    // return Promise.reject(error);
+    throw error.response.data;
+  },
+);
+
+export { axiosPrivateInstance, axiosPublicInstance, axiosTmdbInstance };

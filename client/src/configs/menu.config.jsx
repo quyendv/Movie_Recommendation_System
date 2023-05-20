@@ -1,6 +1,6 @@
-import { AiOutlineHome } from 'react-icons/ai';
+import { AiOutlineComment, AiOutlineHome } from 'react-icons/ai';
 import { BiSlideshow } from 'react-icons/bi';
-import { MdSavedSearch, MdSlideshow } from 'react-icons/md';
+import { MdFavoriteBorder, MdSavedSearch, MdSlideshow, MdSyncLock } from 'react-icons/md';
 import { routesConfigs } from './routes.configs';
 
 export const navMenu = [
@@ -23,5 +23,23 @@ export const navMenu = [
     name: 'Search',
     path: routesConfigs.search,
     icon: <MdSavedSearch size={24} />,
+  },
+];
+
+export const userMenu = [
+  {
+    name: 'Favorites',
+    path: routesConfigs.favorites,
+    icon: <MdFavoriteBorder size={24} />,
+  },
+  {
+    name: 'Comments',
+    path: routesConfigs.comments,
+    icon: <AiOutlineComment size={24} />,
+  },
+  {
+    name: 'Update password',
+    path: routesConfigs.updatePassword,
+    icon: <MdSyncLock size={24} />,
   },
 ];

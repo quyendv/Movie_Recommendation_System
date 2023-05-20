@@ -80,6 +80,7 @@ export const signin = async (req, res) => {
 };
 
 // TODO: refreshToken
+// TODO: reset password
 
 export const getInfo = async (req, res) => {
   try {

@@ -1,4 +1,4 @@
-import { axiosPublicInstance } from '~/configs/axios';
+import { axiosTmdbInstance } from '~/configs/axios.config';
 import tmdbConfigs from '~/configs/tmdb.configs';
 
 const personEndpoints = {
@@ -9,7 +9,7 @@ const personEndpoints = {
 const personApi = {
   getDetail: async ({ personId }) => {
     try {
-      const response = await axiosPublicInstance.get(personEndpoints.detail({ personId }));
+      const response = await axiosTmdbInstance.get(personEndpoints.detail({ personId }));
       return { response };
     } catch (err) {
       return { err };
@@ -18,7 +18,7 @@ const personApi = {
 
   getMedias: async ({ personId }) => {
     try {
-      const response = await axiosPublicInstance.get(personEndpoints.medias({ personId }));
+      const response = await axiosTmdbInstance.get(personEndpoints.medias({ personId }));
       return { response };
     } catch (err) {
       return { err };

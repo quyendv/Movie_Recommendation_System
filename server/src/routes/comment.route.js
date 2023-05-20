@@ -5,6 +5,7 @@ import verifyToken from '../middlewares/verifyToken.js';
 const commentRouter = Router();
 
 // Public
+commentRouter.get('/:mediaId', commentController.getCommentsOfMedia);
 
 // Private
 commentRouter.use(verifyToken);
@@ -12,6 +13,5 @@ commentRouter.use(verifyToken);
 commentRouter.get('/', commentController.getCommentsOfUser);
 commentRouter.post('/', commentController.addComment);
 commentRouter.delete('/:commentId', commentController.deleteComment);
-commentRouter.get('/:mediaId', commentController.getCommentsOfMedia);
 
 export default commentRouter;

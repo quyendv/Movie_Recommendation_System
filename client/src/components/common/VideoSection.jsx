@@ -21,6 +21,7 @@ const VideoItem = ({ video }) => {
   );
 };
 
+// FIXME: handle if no videos
 function VideoSection({ videos }) {
   return (
     // NavigationSwiper: .swiper-slide(&.-active) <pb for pagination>, .swiper-pagination-bullet, .swiper-button-next/prev, .swiper: padding for navigationBtn,

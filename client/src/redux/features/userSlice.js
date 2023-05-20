@@ -8,8 +8,10 @@ export const userSlice = createSlice({
   },
   reducers: {
     setUser: (state, action) => {
-      // todo: ...
-      return state;
+      if (!action.payload) localStorage.removeItem('acc_token');
+      else if (action.payload.accessToken) localStorage.setItem('acc_token', action.payload.accessToken);
+
+      state.user = action.payload; // payload == token | userInfo (expected)
     },
   },
 });

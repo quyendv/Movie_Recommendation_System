@@ -34,12 +34,12 @@ const HeroItem = ({ media, mediaType, genres }) => {
 
       {/* Content:(Desc) Wrapper > Container */}
       <div className="absolute inset-0 sm:px-[10px] md:px-20 lg:px-40">
-        <div className="sm:unset flex h-full flex-col justify-center gap-8 px-8 text-skin-contrast md:w-[45%] lg:w-[50%]">
+        <div className="sm:unset flex h-full flex-col justify-center gap-2 px-8 text-skin-contrast transition-all min-[400px]:gap-8 md:w-[45%] lg:w-[50%]">
           <h3 className="typoLines text-3xl font-bold [--align:left] [--lines:2] xl:text-6xl">
             {media.title || media.name}
           </h3>
           <div className="flex items-center gap-2">
-            {/* Circle Rate: // TODO */}
+            {/* Circle Rate */}
             <CircleRate value={media.vote_average} />
             {/* Genres: get only 2 genre -> slice | splice */}
             {media.genre_ids.slice(0, 2).map((genreIdMedia, index) => (
