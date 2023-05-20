@@ -2,8 +2,8 @@ import cors from 'cors';
 import { config } from 'dotenv';
 import express from 'express';
 import morgan from 'morgan';
-import connectDb from './configs/db.config.js';
-import initRoutes from './routes/index.js';
+import connectDb from './src/configs/db.config.js';
+import initRoutes from './src/routes/index.js';
 
 /** Config before app initializing app */
 config(); // or directly import 'dotenv/config'
@@ -16,7 +16,7 @@ const port = process.env.PORT || 8000;
 /** app.use(middleware) */
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: [process.env.CLIENT_LOCAL, process.env.CLIENT_PRODUCT], // or '*' for all
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
   }),
 );

@@ -10,7 +10,11 @@ import tmdbConfigs from './tmdb.configs';
 // -> example: https://api.themoviedb.org/3/movie/popular?api_key=1508e28e83ed879187a9f8258204b25f&page=1 // or query api_key to end
 
 const baseURL =
-  process.env.NODE_ENV === 'development' ? 'http://localhost:5000/api/v1' : import.meta.data.env.VITE_SERVER_PRODUCT; // check 'development' | 'production'
+  // config .env to .../api/v1/ not root
+  process.env.NODE_ENV === 'development' ? import.meta.env.VITE_SERVER_LOCAL : import.meta.env.VITE_SERVER_PRODUCT; // check 'development' | 'production'
+
+// https://qflix-server.onrender.com
+// https://qflix-server.vercel.app
 
 /** Instance: Public (To NodeJS no required token) + Private (NodeJS verifyToken) + TMDB (TMDB data) */
 const axiosPrivateInstance = axios.create({

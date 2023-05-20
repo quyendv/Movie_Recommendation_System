@@ -32,6 +32,9 @@ function Signin() {
 
     const { username, password } = data;
     const { response, err } = await userApi.signin({ username, password }); // only get & save accessToken, getInfo (in MainLayout) will call in access website
+    
+    console.log(data);
+    console.log(response, err);
 
     if (response) {
       dispatch(setUser(response.data)); // .data by server not axios
