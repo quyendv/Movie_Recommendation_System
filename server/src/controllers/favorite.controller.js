@@ -5,6 +5,7 @@ import FavoriteModel from '../models/favorite.model.js';
 
 export const getListOfUser = async (req, res) => {
   try {
+    // TODO: add filter such as sort by createdAt, updatedAt..., limit, page, searchInFavoriteList, ...
     const favoritesList = await FavoriteModel.find({ userId: req.user.id }).sort('-createdAt'); // return an array
 
     return responseHandler.ok(res, 'Get list favorites successfully', favoritesList);
@@ -43,6 +44,10 @@ export const addFavorite = async (req, res) => {
   }
 };
 
+/**
+ * FavoriteModel gồm _id, userId và mediaId.
+ * Có thể thực hiện xóa theo userId và _id, hoặc có theo userId và mediaId đều được
+ */
 export const removeFavorite = async (req, res) => {
   try {
     const { favoriteId } = req.params; // not param

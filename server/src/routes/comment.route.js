@@ -13,5 +13,6 @@ commentRouter.use(verifyToken);
 commentRouter.get('/', commentController.getCommentsOfUser);
 commentRouter.post('/', commentController.addComment);
 commentRouter.delete('/:commentId', commentController.deleteComment);
+// TODO: edit comment
 
 export default commentRouter;

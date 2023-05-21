@@ -80,3 +80,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWUyM2YyY
 ###
 DELETE http://localhost:5000/api/v1/comments/6460ca60f177836be0311d43
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWUyM2YyYzY4MDM0YzRmNDM1OGJkMSIsImlhdCI6MTY4NDI0ODg5NCwiZXhwIjoxNjg0MzM1Mjk0fQ.sr8keYBaka0JSZ4ozJiDuKyfG1bq_xHdRShedBvFofo
+
+###
+GET http://localhost:5000/api/v1/media/favorite/823999
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjhiM2E0NGU5OWQyZDZiOGVhNWNiNSIsImlhdCI6MTY4NDY4MjI2NSwiZXhwIjoxNjg0NzY4NjY1fQ.bUFbHHZGn4wUfIQ5qzZA4FFY7OZcC86FIaZGPmhOGe0

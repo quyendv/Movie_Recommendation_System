@@ -1,9 +1,12 @@
 // @ts-nocheck
 import { useEffect, useRef, useState } from 'react';
 import { AiFillPlayCircle } from 'react-icons/ai';
+import { ImSpinner } from 'react-icons/im';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
-import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import favoriteApi from '~/apis/favorite.api';
 import mediaApi from '~/apis/media.api';
 import BackdropSection from '~/components/common/BackdropSection';
 import CastSection from '~/components/common/CastSection';
@@ -13,20 +16,24 @@ import PosterSection from '~/components/common/PosterSection';
 import Recommendation from '~/components/common/Recommendation';
 import SectionWrapper from '~/components/common/SectionWrapper';
 import VideoSection from '~/components/common/VideoSection';
+import { routesConfigs } from '~/configs/routes.configs';
 import tmdbConfigs from '~/configs/tmdb.configs';
 import { setGlobalLoading } from '~/redux/features/globalSlice';
+import { addFavorite, removeFavorite } from '~/redux/features/userSlice';
 
 function MediaDetail() {
   const { mediaType, mediaId } = useParams();
   const [media, setMedia] = useState({});
   const [isFavorite, setIsFavorite] = useState(false);
   const videoRef = useRef();
+  const [onLoading, setOnLoading] = useState(false); // for favorites
 
+  const { user, favoriteList } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Scroll to top-left screen when reload
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); // Scroll to top-left screen when reload
 
     const getMedia = async () => {
       dispatch(setGlobalLoading(true));
@@ -37,12 +44,59 @@ function MediaDetail() {
       if (response) {
         // Custom response by BE for detail, favorite, credits, videos, recommend, images, reviews, etc... -> convert custom mediaApi in ~/apis/media.api.js
         setMedia(response);
+        setIsFavorite(response.isFavorite);
       }
       // TODO: if err -> toast
     };
     getMedia();
-  }, [mediaType, mediaId, dispatch]); // TODO: dispatch
+  }, [mediaType, mediaId, user]); // user state changed -> update isFavorite
 
+  const handleToggleFavorite = () => {
+    if (!user) navigate(routesConfigs.signin);
+    if (onLoading) return; // if page is handling favorite -> can't action
+
+    const oldState = isFavorite;
+
+    if (oldState) handleRemoveFavorite();
+    else handleAddFavorite();
+  };
+
+  const handleAddFavorite = async () => {
+    setOnLoading(true);
+    const { response, err } = await favoriteApi.add({
+      mediaId: media.id || mediaId,
+      mediaTitle: media.title || media.name, // movie | tv
+      mediaType: mediaType,
+      mediaPoster: media.poster_path,
+      mediaRate: media.vote_average,
+    });
+    setOnLoading(false);
+
+    console.log({ name: 'Add favorite', response, err });
+    if (response) {
+      dispatch(addFavorite(response.data));
+      setIsFavorite(true);
+      toast.success('Add favorite successfully');
+    }
+    if (err) toast.error('Add favorite failed');
+  };
+
+  const handleRemoveFavorite = async () => {
+    setOnLoading(true);
+    const deletedFavoriteItem = favoriteList.find((e) => {
+      return e.mediaId.toString() === mediaId.toString();
+    });
+    const { response, err } = await favoriteApi.remove({ favoriteId: deletedFavoriteItem.id });
+    setOnLoading(false);
+
+    console.log({ name: 'Remove favorite', response, err });
+    if (response) {
+      dispatch(removeFavorite(deletedFavoriteItem));
+      setIsFavorite(false);
+      toast.success('Remove favorite successfully');
+    }
+    if (err) toast.error('Remove favorite failed');
+  };
   return (
     media && (
       <>
@@ -89,15 +143,22 @@ function MediaDetail() {
 
                   {/* favorite & watch now */}
                   <div className="flex items-center gap-4 text-white">
-                    <div
+                    <span
                       className="cursor-pointer p-1 text-skin-primary [filter:drop-shadow(0_0_10px_var(--primary))_drop-shadow(0_0_10px_var(--primary))_drop-shadow(0_0_30px_var(--primary))]"
-                      onClick={() => setIsFavorite(!isFavorite)}
+                      onClick={handleToggleFavorite}
                     >
-                      {isFavorite ? <MdFavorite size={24} /> : <MdFavoriteBorder size={24} />}
-                    </div>
-                    {/* //TODO onclick: ScrollIntoView Video */}
+                      {onLoading ? (
+                        <ImSpinner size={24} className="animate-spin" />
+                      ) : isFavorite ? (
+                        <MdFavorite size={24} />
+                      ) : (
+                        <MdFavoriteBorder size={24} />
+                      )}
+                    </span>
+
+                    {/* ScrollIntoView Video */}
                     <button
-                      className="flex items-center gap-1 rounded bg-skin-primary px-2 py-2"
+                      className="flex select-none items-center gap-1 rounded bg-skin-primary px-2 py-2"
                       onClick={() => videoRef.current.scrollIntoView()}
                     >
                       <AiFillPlayCircle size={24} />

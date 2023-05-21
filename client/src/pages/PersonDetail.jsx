@@ -41,8 +41,8 @@ function PersonDetail() {
   return (
     person && (
       <>
-        {/* Wrapper (custom container: // TODO convert container default to this) > overview + mediaGrid */}
-        <div className="main-section mt-header">
+        {/* Wrapper (custom container > overview + mediaGrid */}
+        <div className="main-content mt-header">
           {/* Person Overview */}
           <div className="relative flex flex-col lg:flex-row">
             {/* Image */}

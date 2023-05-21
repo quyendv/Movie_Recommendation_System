@@ -63,8 +63,8 @@ function Search() {
   };
 
   return (
-    // MainSection ~ Wrapper > Search Group + Search Types + MediaGrid + Load more
-    <div className="main-section mt-header space-y-8">
+    // MainContent ~ Wrapper > Search Group + Search Types + MediaGrid + Load more
+    <div className="main-content mt-header space-y-8">
       {/* Search Group: mt to header when header transparent */}
       <div className="relative mt-10">
         {/* Input // TODO: change placeholder by searchType, rename follow by Website */}

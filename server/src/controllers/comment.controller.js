@@ -41,6 +41,8 @@ export const deleteComment = async (req, res) => {
   }
 };
 
+// TODO: edit comment
+
 /** Get all comments of each user (about all media) -> public api, verifyToken is unnecessary */
 export const getCommentsOfUser = async (req, res) => {
   try {

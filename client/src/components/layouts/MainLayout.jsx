@@ -1,11 +1,14 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import favoriteApi from '~/apis/favorite.api';
 import userApi from '~/apis/user.api';
-import { setUser } from '~/redux/features/userSlice';
+import { setFavoriteList, setUser } from '~/redux/features/userSlice';
 import GlobalLoading from '../common/GlobalLoading';
 import Header from '../common/Header';
 
 function MainLayout({ children }) {
+  // @ts-ignore
+  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   // GetInfo when run app
@@ -19,7 +22,18 @@ function MainLayout({ children }) {
     getUserInfo();
   }, []);
 
-  // TODO: Handle favorite
+  useEffect(() => {
+    const getFavoriteList = async () => {
+      const { response, err } = await favoriteApi.getList();
+
+      if (response) dispatch(setFavoriteList(response.data));
+      if (err) {
+      } // TODO: toast
+    };
+
+    if (user) getFavoriteList();
+    if (!user) dispatch(setFavoriteList([]));
+  }, [user]); // update following user
 
   return (
     <>

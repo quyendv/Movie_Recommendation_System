@@ -16,7 +16,7 @@ function MediaSection({ mediaType = 'movie', mediaCategory = 'popular' }) {
       // TODO: toast if err
     };
     getMedias();
-  }, [mediaType, mediaCategory]); // TODO: dispatch
+  }, [mediaType, mediaCategory]);
 
   return (
     <AutoSwiper>

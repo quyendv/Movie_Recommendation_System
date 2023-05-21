@@ -2,6 +2,7 @@
 import { axiosTmdbInstance } from '~/configs/axios.config';
 import tmdbConfigs from '~/configs/tmdb.configs';
 import commentApi from './comment.api';
+import favoriteApi from './favorite.api';
 
 const mediaEndpoints = {
   list: ({ mediaType, mediaCategory, page }) =>
@@ -37,7 +38,8 @@ const mediaApi = {
       const videos = await axiosTmdbInstance.get(mediaEndpoints.videos({ mediaType, mediaId }));
       const images = await axiosTmdbInstance.get(mediaEndpoints.images({ mediaType, mediaId }));
       const recommendations = await axiosTmdbInstance.get(mediaEndpoints.recommendations({ mediaType, mediaId }));
-      const { response: commentResponse, err } = await commentApi.getListOfMedia({ mediaId });
+      const { response: commentResponse, err: commentErr } = await commentApi.getListOfMedia({ mediaId });
+      const { response: favoriteResponse, err: favoriteErr } = await favoriteApi.isFavoriteOfUser({ mediaId });
 
       if (response) {
         response.credits = credits;
@@ -45,6 +47,7 @@ const mediaApi = {
         response.images = images;
         response.recommendations = recommendations;
         response.comments = commentResponse?.data;
+        response.isFavorite = favoriteResponse?.data?.isFavorite;
       }
 
       return { response };

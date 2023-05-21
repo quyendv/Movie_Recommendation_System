@@ -1,5 +1,8 @@
 import { useSelector } from 'react-redux';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import 'tippy.js/dist/tippy.css';
 import routes from '~/routes';
 import MainLayout from './components/layouts/MainLayout';
 
@@ -24,7 +27,21 @@ function App() {
         </Routes>
       </Router>
 
-      {/* // TODO: Toastify */}
+      {/* Toastify */}
+      <ToastContainer
+        position="bottom-left"
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        // limit={3}
+        // transition={Flip}
+        theme={theme}
+      />
     </div>
   );
 }

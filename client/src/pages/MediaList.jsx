@@ -60,7 +60,7 @@ function MediaList() {
 
     // Call api
     getMedias();
-  }, [mediaType, prevMediaType, currentCategoryIndex, currentPage, dispatch]); // TODO: update deps
+  }, [mediaType, prevMediaType, currentCategoryIndex, currentPage]);
 
   const handleChangeCategory = (index) => {
     if (index !== currentCategoryIndex) {
@@ -75,7 +75,7 @@ function MediaList() {
     <>
       <HeroSection mediaType={mediaType} mediaCategory={categories[currentCategoryIndex]} />
 
-      <div className="main-section">
+      <div className="main-content">
         {/* Title & Categories */}
         <div className="mb-8 flex flex-col items-center justify-between gap-4 lg:flex-row">
           <h5 className="text-2xl font-bold text-skin-contrast">{mediaType === 'movies' ? 'Movies' : 'TV Series'}</h5>

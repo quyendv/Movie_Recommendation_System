@@ -96,7 +96,7 @@ function HeroSection({ mediaType, mediaCategory }) {
     };
 
     getGenres();
-  }, [mediaType, mediaCategory, dispatch]); // TODO: dispatch
+  }, [mediaType, mediaCategory]);
 
   return (
     // Wrapper: gradient at bottom to 30%,

@@ -4,7 +4,7 @@ import MediaItem from './MediaItem';
 
 function PersonMediaGrid({ personId }) {
   const [medias, setMedias] = useState([]);
-  const [filteredMedias, setFilteredMedias] = useState([]);
+  const [filteredMedias, setFilteredMedias] = useState([]); // limit list by totalInPage
   const [currentPage, setCurrentPage] = useState(1);
   const totalInPage = 8;
 
@@ -27,8 +27,8 @@ function PersonMediaGrid({ personId }) {
   const handleLoadMore = () => {
     setFilteredMedias([
       ...filteredMedias,
-      ...[...medias].slice(currentPage * totalInPage, currentPage * totalInPage + totalInPage),
-    ]); // or splice(currentPage * totalInPage, totalInPage)
+      ...medias.slice(currentPage * totalInPage, currentPage * totalInPage + totalInPage),
+    ]); // or splice(currentPage * totalInPage, totalInPage) or set filteredMedias([...medias.splice(0, (currentPage + 1) * totalInPage, currentPage + totalInPage]))
     setCurrentPage(currentPage + 1);
   };
 

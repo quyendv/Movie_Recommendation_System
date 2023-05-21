@@ -9,8 +9,8 @@ function HomePage() {
       {/* HeroSection */}
       <HeroSection mediaType={tmdbConfigs.mediaType.movie} mediaCategory={tmdbConfigs.mediaCategory.popular} />
 
-      {/* MainSection */}
-      <div className="container mx-auto p-4 sm:p-8">
+      {/* MainContent*/}
+      <div className="main-content">
         {/* Popular movie */}
         <SectionWrapper title="Popular Movies">
           <MediaSection mediaType={tmdbConfigs.mediaType.movie} mediaCategory={tmdbConfigs.mediaCategory.popular} />
