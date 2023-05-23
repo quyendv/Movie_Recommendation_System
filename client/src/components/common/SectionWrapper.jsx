@@ -1,9 +1,11 @@
-function SectionWrapper({ title, children, className = '' }) {
+import { forwardRef } from 'react';
+
+function SectionWrapper({ title, children, className = '' }, ref) {
   return (
     // Wrapper ~ Container > TitleGroup + Children
-    <div className={`mt-20 flex flex-col gap-8 ${className}`}>
+    <div className={`mt-20 flex flex-col gap-8 ${className}`} ref={ref}>
       {title && (
-        <div className="relative px-5">
+        <div className="relative pl-5">
           {/* Title */}
           <h5 className="text-2xl font-bold uppercase text-skin-contrast">{title}</h5>
 
@@ -16,4 +18,4 @@ function SectionWrapper({ title, children, className = '' }) {
   );
 }
 
-export default SectionWrapper;
+export default forwardRef(SectionWrapper);

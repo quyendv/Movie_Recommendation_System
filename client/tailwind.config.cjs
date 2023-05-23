@@ -16,6 +16,7 @@ module.exports = {
           secondary: 'var(--secondary)',
           contrast: 'var(--contrast-text)',
           navHover: 'var(--nav-hover)',
+          scrollTrack: 'var(--scroll-track-bg)',
         },
         crpColor: 'var(--crp-color)',
         crpCircle1: 'var(--crp-circle1-color)',
@@ -39,7 +40,7 @@ module.exports = {
       fontFamily: {
         berkshireSwash: ['Berkshire Swash', 'cursive '],
         lobster: ['Lobster', 'cursive'],
-        roboto: ['Roboto', 'sans-serif']
+        roboto: ['Roboto', 'sans-serif'],
       },
       animation: {
         dotCrp: 'animateDotCrp 1s linear forwards',

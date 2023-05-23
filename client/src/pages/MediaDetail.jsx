@@ -11,6 +11,7 @@ import mediaApi from '~/apis/media.api';
 import BackdropSection from '~/components/common/BackdropSection';
 import CastSection from '~/components/common/CastSection';
 import CircleRate from '~/components/common/CircleRate';
+import CommentSection from '~/components/common/CommentSection';
 import ImageHeader from '~/components/common/ImageHeader';
 import PosterSection from '~/components/common/PosterSection';
 import Recommendation from '~/components/common/Recommendation';
@@ -104,7 +105,7 @@ function MediaDetail() {
         <ImageHeader imgPath={tmdbConfigs.backdropPath(media?.backdrop_path || media?.poster_path)} />
 
         {/* Wrapper (higher ImageHeader: zIndex) > Content + Videos + Backdrop + Posters + Review(cmt) + Recommendation  */}
-        <div className="container relative z-10 mx-auto p-4 text-skin-contrast sm:p-8">
+        <div className="main-content relative z-10 text-skin-contrast">
           {/* Content: (translateToTop above ImageHeader) > container (flexbox) > poster + infos */}
           <div className="-mt-40 lg:-mt-60 xl:-mt-80">
             {/* Container: < laptop (lg): flex-col items-center, else unset */}
@@ -176,9 +177,13 @@ function MediaDetail() {
           </div>
           {/* Content */}
 
-          {/* Videos: //TODO ref to scrollIntoView */}
+          {/* Review */}
+          <CommentSection mediaComments={media?.comments} media={media} mediaType={mediaType}/>
+          {/* Review */}
+
+          {/* Videos */}
           <div ref={videoRef}>
-            <SectionWrapper className="pt-8" title="Videos">
+            <SectionWrapper title="Videos">
               {/* only max 5 videos */}
               <VideoSection videos={media?.videos?.results?.slice(0, 5)} />
             </SectionWrapper>
@@ -198,9 +203,6 @@ function MediaDetail() {
             <PosterSection posters={media?.images?.posters?.slice(0, 10)} />
           </SectionWrapper>
           {/* Posters */}
-
-          {/* Review: //TODO */}
-          {/* Review */}
 
           {/* Recommendation: */}
           <SectionWrapper title="Recommendations">

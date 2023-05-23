@@ -59,7 +59,9 @@ export const getCommentsOfUser = async (req, res) => {
 export const getCommentsOfMedia = async (req, res) => {
   try {
     // TODO: limit comment in BE | FE -> nên xử lý ở BE (db) nếu quá nhiều comments, còn không thì xử lý ở FE sẽ chỉ gọi api 1 lần
-    const comments = await CommentModel.find({ mediaId: req.params.mediaId }).sort('-createdAt');
+    const comments = await CommentModel.find({ mediaId: req.params.mediaId })
+      .populate('userId', '-password -createdAt -updatedAt') // populate path 'userId' not 'user/User', remove passwd
+      .sort('-createdAt');
 
     return responseHandler.ok(res, 'Get comments of media successfully', comments);
   } catch (err) {

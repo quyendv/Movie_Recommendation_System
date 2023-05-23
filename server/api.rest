@@ -59,27 +59,27 @@ Authorization: Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWUyM2YyYzY
 
 ###
 GET http://localhost:5000/api/v1/comments/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWUyM2YyYzY4MDM0YzRmNDM1OGJkMSIsImlhdCI6MTY4NDI0ODg5NCwiZXhwIjoxNjg0MzM1Mjk0fQ.sr8keYBaka0JSZ4ozJiDuKyfG1bq_xHdRShedBvFofo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjhiM2E0NGU5OWQyZDZiOGVhNWNiNSIsImlhdCI6MTY4NDgzODY0MSwiZXhwIjoxNjg0OTI1MDQxfQ.fG6hxbK2LhqgxGnKqoaOo-Mbm1wpfk36kgPvXJzvnws
 
 ###
-GET http://localhost:5000/api/v1/comments/12345
+GET http://localhost:5000/api/v1/comments/385687
 
 ###
 POST http://localhost:5000/api/v1/comments/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWUyM2YyYzY4MDM0YzRmNDM1OGJkMSIsImlhdCI6MTY4NDI0ODg5NCwiZXhwIjoxNjg0MzM1Mjk0fQ.sr8keYBaka0JSZ4ozJiDuKyfG1bq_xHdRShedBvFofo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjhiM2E0NGU5OWQyZDZiOGVhNWNiNSIsImlhdCI6MTY4NDgzODY0MSwiZXhwIjoxNjg0OTI1MDQxfQ.fG6hxbK2LhqgxGnKqoaOo-Mbm1wpfk36kgPvXJzvnws
 
 {
-  "mediaId": "12345",
-  "content": "comment",
+  "mediaId": "385687",
+  "content": "new new!",
   "mediaType": "movie",
-  "mediaTitle": "Title movie",
-  "mediaPoster": "url poster"
+  "mediaTitle": "Fast X",
+  "mediaPoster": "/1E5baAaEse26fej7uHcjOgEE2t2.jpg"
 }
 
 ###
-DELETE http://localhost:5000/api/v1/comments/6460ca60f177836be0311d43
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWUyM2YyYzY4MDM0YzRmNDM1OGJkMSIsImlhdCI6MTY4NDI0ODg5NCwiZXhwIjoxNjg0MzM1Mjk0fQ.sr8keYBaka0JSZ4ozJiDuKyfG1bq_xHdRShedBvFofo
+DELETE http://localhost:5000/api/v1/comments/646b3f3606674e2c84694730
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjhiM2E0NGU5OWQyZDZiOGVhNWNiNSIsImlhdCI6MTY4NDc0NjEyMSwiZXhwIjoxNjg0ODMyNTIxfQ.qGm2Eaptcs3K6sud6UZ2ShlBIgVht699_Fqk0C4prBw
 
 ###
 GET http://localhost:5000/api/v1/media/favorite/823999

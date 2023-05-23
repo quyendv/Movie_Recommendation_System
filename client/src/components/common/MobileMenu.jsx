@@ -116,16 +116,19 @@ function MobileMenu({ theme, onSwitchTheme }) {
           {/* Theme switcher */}
           <div className="p-2">
             <h2 className="mb-2 text-xl font-bold uppercase text-skin-contrast">Theme</h2>
-            <button className="flex items-center gap-4 p-2.5 font-semibold text-skin-contrast" onClick={onSwitchTheme}>
+            <button
+              className="flex w-full items-center gap-5 px-4 py-2.5 font-semibold uppercase tracking-wide text-skin-contrast hover:bg-skin-navHover"
+              onClick={onSwitchTheme}
+            >
               {theme === themeModes.light ? (
                 <>
-                  <BsFillSunFill size={20} />
-                  <span className="uppercase">Light Mode</span>
+                  <BsFillSunFill size={24} />
+                  <span>Light Mode</span>
                 </>
               ) : (
                 <>
                   <BsFillMoonStarsFill />
-                  <span className="uppercase">Dark Mode</span>
+                  <span>Dark Mode</span>
                 </>
               )}
             </button>

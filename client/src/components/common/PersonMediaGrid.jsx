@@ -28,7 +28,7 @@ function PersonMediaGrid({ personId }) {
     setFilteredMedias([
       ...filteredMedias,
       ...medias.slice(currentPage * totalInPage, currentPage * totalInPage + totalInPage),
-    ]); // or splice(currentPage * totalInPage, totalInPage) or set filteredMedias([...medias.splice(0, (currentPage + 1) * totalInPage, currentPage + totalInPage]))
+    ]); // or ...[...medias].splice(currentPage * totalInPage, totalInPage) or set filteredMedias([...medias].splice(0, (currentPage + 1) * totalInPage, currentPage + totalInPage)) or toSplice()
     setCurrentPage(currentPage + 1);
   };
 

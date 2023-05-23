@@ -38,8 +38,9 @@ function Signin() {
 
     if (response) {
       dispatch(setUser(response.data)); // .data by server not axios
-      navigate(routesConfigs.home);
-      // TODO: toast
+      // navigate(routesConfigs.home);
+      navigate(-1); // FIXME: go back to optimize UX, but SignUp must redirect home
+      // TODO: toast if use modal, because toast is removed when redirect
     }
     if (err) {
       setError(err.message);

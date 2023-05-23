@@ -33,13 +33,34 @@ const mediaApi = {
     try {
       const response = await axiosTmdbInstance.get(mediaEndpoints.detail({ mediaType, mediaId }));
 
-      // SubsetData: custom response by BE for favorite, credits, videos, recommend, images, reviews, etc... -> convert to custom here
-      const credits = await axiosTmdbInstance.get(mediaEndpoints.credits({ mediaType, mediaId }));
-      const videos = await axiosTmdbInstance.get(mediaEndpoints.videos({ mediaType, mediaId }));
-      const images = await axiosTmdbInstance.get(mediaEndpoints.images({ mediaType, mediaId }));
-      const recommendations = await axiosTmdbInstance.get(mediaEndpoints.recommendations({ mediaType, mediaId }));
-      const { response: commentResponse, err: commentErr } = await commentApi.getListOfMedia({ mediaId });
-      const { response: favoriteResponse, err: favoriteErr } = await favoriteApi.isFavoriteOfUser({ mediaId });
+      // *** SubsetData: custom response by BE for favorite, credits, videos, recommend, images, reviews, etc... -> convert to custom here
+
+      // Failed: Các api riêng rẽ (không đợi kết quả hàm này để gọi hàm kia) thì không cần await lần lượt mà xử lý Promise.all chung
+      // const credits = await axiosTmdbInstance.get(mediaEndpoints.credits({ mediaType, mediaId }));
+      // const videos = await axiosTmdbInstance.get(mediaEndpoints.videos({ mediaType, mediaId }));
+      // const images = await axiosTmdbInstance.get(mediaEndpoints.images({ mediaType, mediaId }));
+      // const recommendations = await axiosTmdbInstance.get(mediaEndpoints.recommendations({ mediaType, mediaId }));
+      // const { response: commentResponse, err: commentErr } = await commentApi.getListOfMedia({ mediaId });
+      // const { response: favoriteResponse, err: favoriteErr } = await favoriteApi.isFavoriteOfUser({ mediaId });
+      // console.log({ name: 'Get comment api', commentResponse, commentErr, mediaId });
+      // console.log({ name: 'Get favorite api', favoriteResponse, favoriteErr, mediaId });
+
+      // Optimize call many independent api
+      const [
+        credits,
+        videos,
+        images,
+        recommendations,
+        { response: commentResponse, err: commentErr },
+        { response: favoriteResponse, err: favoriteErr },
+      ] = await Promise.all([
+        axiosTmdbInstance.get(mediaEndpoints.credits({ mediaType, mediaId })),
+        axiosTmdbInstance.get(mediaEndpoints.videos({ mediaType, mediaId })),
+        axiosTmdbInstance.get(mediaEndpoints.images({ mediaType, mediaId })),
+        axiosTmdbInstance.get(mediaEndpoints.recommendations({ mediaType, mediaId })),
+        commentApi.getListOfMedia({ mediaId }),
+        favoriteApi.isFavoriteOfUser({ mediaId }),
+      ]);
 
       if (response) {
         response.credits = credits;

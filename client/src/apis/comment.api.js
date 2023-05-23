@@ -11,7 +11,7 @@ const commentApi = {
   getListOfMedia: async ({ mediaId }) => {
     try {
       const response = await axiosPublicInstance.get(endpoints.getListOfMedia({ mediaId }));
-      return response;
+      return { response };
     } catch (err) {
       return { err };
     }
@@ -20,23 +20,31 @@ const commentApi = {
   getListOfUser: async () => {
     try {
       const response = await axiosPrivateInstance.get(endpoints.getListOfUser);
-      return response;
+      return { response };
     } catch (err) {
       return { err };
     }
   },
-  addComment: async () => {
+
+  addComment: async ({ mediaId, content, mediaType, mediaTitle, mediaPoster }) => {
     try {
-      const response = await axiosPrivateInstance.get(endpoints.add);
-      return response;
+      const response = await axiosPrivateInstance.post(endpoints.add, {
+        mediaId,
+        content,
+        mediaType,
+        mediaTitle,
+        mediaPoster,
+      });
+      return { response };
     } catch (err) {
       return { err };
     }
   },
+  
   deleteComment: async ({ commentId }) => {
     try {
-      const response = await axiosPrivateInstance.get(endpoints.delete({ commentId }));
-      return response;
+      const response = await axiosPrivateInstance.delete(endpoints.delete({ commentId }));
+      return { response };
     } catch (err) {
       return { err };
     }

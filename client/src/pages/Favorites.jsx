@@ -80,7 +80,7 @@ function Favorites() {
 
   const handleLoadMore = async () => {
     setPage(page + 1); // not update immediately
-    setFilteredMedias([...medias.splice(0, (page + 1) * itemsPerPage)]); // same as in PersonDetailGrid
+    setFilteredMedias([...medias].splice(0, (page + 1) * itemsPerPage)); // same as in PersonDetailGrid, NOTICE that splice modify original array (in-place)
   };
 
   return (

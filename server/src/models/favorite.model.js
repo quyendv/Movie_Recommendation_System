@@ -5,6 +5,7 @@ export default mongoose.model(
   'Favorite',
   new Schema(
     {
+      // FIXME: should rename key to user
       userId: {
         type: Schema.Types.ObjectId,
         ref: 'User',
